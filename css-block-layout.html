@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		html,body{						/*去边缘留白，设置背景观察*/
+			margin: 0px;
+			padding: 0px;
+			height: 100%;
+			/*background-color: yellow;*/
+		}
+		header,footer{
+			background-color: black;
+			color: white;
+			height: 40px;
+			/*width: 600px;*/	
+										/*自居中 & 背景颜色技巧（非margin） --->padding-left,right减中间除2*/
+			padding-right: calc(50% - 300px);	
+			padding-left: calc(50% - 300px);
+		}
+		header h1{
+			margin: 0px;
+		}
+
+		main,footer{
+			width: 600px;				/* 便捷式自居中，width: xx; + margin: auto */
+			margin: auto;	
+			margin-top: 1em;
+		}
+		main{							/* 固定页尾于底部，100%-H: header - H: footer - margin-top: main&footer */
+			min-height: calc(100% - 80px - 2em);
+		}
+		main .product{
+			list-style: none;
+			/*background-color: green;*/
+			padding: 0px;
+		}
+		main .product li{
+			width: 180px;
+			height: 40px;
+			box-sizing: border-box;		/*设定height=height+border自调*/
+			border: 3px solid;
+			background-color: pink;
+			/*margin-left: 15px;*/
+			margin-right: 30px;
+			margin-bottom: 15px;
+		}
+		main .product li:hover{
+			background-color: red;
+			transition: .5s;
+		}
+		main .product li:nth-child(n+5){	/*通过伪类li:nth-child(n)选择兄弟子集*/
+			margin-left: 210px;
+		}
+		main .product li:nth-child(n+9){	
+			margin-left: 420px
+		}
+		main .product li:nth-child(5){
+			margin-top: -220px;
+		}
+		main .product li:nth-child(9){
+			margin-top: -220px
+		}
+
+		main .reference{
+			list-style: none;
+			/*background-color: #190;*/
+			margin: 0px;
+			padding: 0px;
+			overflow: hidden;				/*不仅仅改变超出位置，还可以改变结束位置*/
+		}
+		main .reference li{
+			border-bottom: 1px dotted;
+			margin-bottom: -1px;			/*每个li向上移动1px，刚号移过上一级1px border处*/
+		}
+		main .reference li a{
+			color: #333;
+			text-decoration: none;
+		}
+
+		footer{
+			/*position:absolute;*/
+
+		}
+		footer p{
+			margin: 0px;
+			padding: 0px;
+			text-align: center;			/*文本水平居中text-align:center;*/
+		}
+
+
+
+
+
+	
+	</style>
+</head>
+<body>
+
+  <header>
+  	<h1>Hello World</h1>
+  </header>
+
+  <main>
+  	<div class="bbc">
+  		Our high level delegation is on the way back from China where they had long meetings with Chinese leaders and business representatives. We will be meeting tomorrow to determine the results, but it is hard for China in that they have become very spoiled with U.S. trade wins!
+  		<br>
+  		— Donald J. Trump (@realDonaldTrump) 2018.5.5
+  	</div>
+  	<ul class="product">
+  		<li>W:180 H:40(include...)</li>
+  		<li>Level gap: 30px</li>
+  		<li>Vertical gap: 5px</li>
+  		<li>Border width: 3px</li>
+  		<li>Product</li>
+  		<li>Product</li>
+  		<li>Product</li>
+  		<li>Product</li>
+  		<li>Product</li>
+  		<li>Product</li>
+  		<li>Product</li>
+  		<li>Product</li>
+  	</ul>
+  	<ol class="reference">
+  		<li><a href="#">link</a></li>
+  		<li><a href="#">link</a></li>
+  		<li><a href="#">link</a></li>
+  		<li><a href="#">link</a></li>
+  		<li><a href="#">link</a></li>
+  	</ol>
+  </main>
+
+  <footer>
+  	<p>&copy;CopyRight</p>
+  	<p>All elements on this page use block elements</p>
+  </footer>
+
+</body>
+</html>
