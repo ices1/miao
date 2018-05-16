@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <!-- <meta http-equiv="refresh" content="1"> -->
+  <meta name="keywords" content="汽车视差滚动效果,小米返回首页效果,书本上图效果">
+  <style>
+    body,html{
+      margin: 0px;
+      padding: 0px;
+    }
+    .container_1 *{
+      height: 100vh;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      box-sizing: border-box;
+    }
+    .car_1{
+      background-image: url(http://car-configurator.ferrari.com/titan/TitanServicev1.aspx?RenderScript=f152m&width=1060&height=430&assetPath=paint&base64off=&workingWidth=1060&workingHeight=430&option=*EXT/065453100,*EXT,ECM,ECN,ECH,BRA,CER,WHB,WHR,EC,WH,*INT/364018500,*INT,CMM,*CAR/364900152,*CAR,CP1,CPC,STW1/364018500,STW1,LS1,IIS,REV,IOR,SEA,SSS,CM,CP,II,IO,SS,STDStitching,STDEmboss,STDDaytonaInserts,STDSeatStripes,STDDoorPockets,STDDoorPanels,STDOuterDoorPanels,STDDash,STDDSH7,STDSteering,STDUpperTunnel,STDHeadliner,STDUpper,STDRear,STDParcelShelf,STDBootCarpets,VRSWInserts&);
+    }
+    .car_2{
+      background-image: url(http://car-configurator.ferrari.com/titan/TitanServicev1.aspx?RenderScript=f152m&width=1060&height=430&assetPath=paint&base64off=&workingWidth=1060&workingHeight=430&option=*EXT/065453200,*EXT,ECM,ECN,BRA,CER,WHB,WHR,EC,WH,*INT/364018500,*INT,CMM,*CAR/364900152,*CAR,CP1,CPC,STW1/364018500,STW1,LS1,IIS,REV,IOR,SEA,SSS,CM,CP,II,IO,SS,STDStitching,STDEmboss,STDDaytonaInserts,STDSeatStripes,STDDoorPockets,STDDoorPanels,STDOuterDoorPanels,STDDash,STDDSH7,STDSteering,STDUpperTunnel,STDHeadliner,STDUpper,STDRear,STDParcelShelf,STDBootCarpets,VRSWInserts&);
+    }
+    .car_3{
+      background-image: url(http://car-configurator.ferrari.com/titan/TitanServicev1.aspx?RenderScript=f152m&width=1060&height=430&assetPath=paint&base64off=&workingWidth=1060&workingHeight=430&option=*EXT/065427400,*EXT,ECM,ECN,ECH,BRA,CER,WHB,WHR,EC,WH,*INT/364018500,*INT,CMM,*CAR/364900152,*CAR,CP1,CPC,STW1/364018500,STW1,LS1,IIS,REV,IOR,SEA,SSS,CM,CP,II,IO,SS,STDStitching,STDEmboss,STDDaytonaInserts,STDSeatStripes,STDDoorPockets,STDDoorPanels,STDOuterDoorPanels,STDDash,STDDSH7,STDSteering,STDUpperTunnel,STDHeadliner,STDUpper,STDRear,STDParcelShelf,STDBootCarpets,VRSWInserts&);
+    }
+
+    .mi_home{
+      background-image: url(https://i1.mifile.cn/f/i/g/2015/cn-index/mix2320-220.png);
+      /*background-position: -160px;*/
+      background-position: 160;
+      width: 160px;
+      height: 220px;
+      /*height: calc(50vh - 110px);*/
+      transition: .5s;
+    }
+    .mi_home:hover{
+      background-position: -160px;
+    }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="container_1">
+      <div class="car_1">
+      </div>
+      <div class="car_2">
+      </div>
+      <div class="car_3">
+      </div>
+    </div>
+
+    <div class="xiaomi">
+      <div class="mi_home"></div>
+    </div>
+  </main>
+</body>
+</html>
