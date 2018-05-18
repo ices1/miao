@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style>
+	html,body{
+		/*background-color: yellow;*/
+		background-color: #fff;
+		margin: 0px;
+		height: 100%
+	}
+
+	section{
+		font-size: 0;
+		/*background-color: pink;*/
+		position: relative;
+		width: 100px;
+		margin: auto;
+	}
+	section *{
+		font-size: 16px;
+	}
+	#ios-checkbox{
+		display: none;
+	}
+	#ios-checkbox:checked + .new-cb {
+		/*background-color: #6ddc5f;*/
+		/*transition: .3s ease;*/
+	}
+	#ios-checkbox:checked + .new-cb + .new-cb-bk + .new-rd {
+		/*background-color: red;*/
+		left: 27px;
+		/*transition: .3s ease;*/
+		/*padding: 50px；*/
+	}
+	#ios-checkbox:checked + .new-cb + .new-cb-bk {
+		box-sizing: border-box;
+		display: inline-block;
+		/*background-color: #6ddc5f;*/
+
+		left: 30px;
+		top: 18px;
+		width: 0px;
+		height: 0px;
+
+	}
+	.new-cb{
+		border-radius: 999px; 
+		width: 60px;
+		height: 36px;
+		/*box-sizing: border-box;*/
+		/*padding: auto;*/
+
+		/*inline-block 会导致边缘象素遗留*/
+		display: inline-block;
+		background-color: #6ddc5f;
+		/*transition: .3s ease;*/
+	}
+	.new-cb-bk{
+		position: absolute;
+		border-radius: 999px; 
+		/*box-sizing: border-box;*/
+
+		top: 0px;
+		left: 0px;
+		width: 60px;
+		height: 36px;
+		background-color: #ddd;
+		transition: .3s linear;
+		/*transition: .3s cubic-bezier(.52,.08,.34,.39);*/
+	}
+	.new-rd{
+		width: 30px;
+		height: 30px;
+		border-radius: 999px;
+		/*padding: auto;*/
+		box-sizing: border-box;
+		display: inline-block;
+		background-color: #fff;
+		position: absolute;
+		top: 3px;
+		left: 3px;
+		/*box-shadow: 0 2px 3px 0px #bbb;*/
+		box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+		transition: .3s ease;
+	}
+
+/*#6ddc5f*/
+</style>
+</head>
+<body>
+
+  <h2>ios-checkbox animation</h2>
+  <!-- <p>边缘还有象素格子，待改进</p> -->
+  <section>
+  	<input type="checkbox" id="ios-checkbox">
+  	<label for="ios-checkbox" class="new-checkbox new-cb">
+  	</label>
+	  <label for="ios-checkbox" class="new-checkbox new-cb-bk"></label>
+	  <label for="ios-checkbox" class="new-checkbox new-rd"></label>
+  </section>
+
+</body>
+
+</html>
