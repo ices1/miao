@@ -1,169 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-<style>
-	html,body{
-		/*background-color: yellow;*/
-		background-color: #fff;
-		zoom: 1.5;
-		overflow: hidden;
-		/*margin: 0px;*/
-		/*height: 100%*/
-	}
-	h2{
-		font-size: 1em;
-	}
+	<title>ios-checkbox</title>
+	<style>
+		html,body{
+			/*background-color: yellow;*/
+			background-color: #fff;
+			zoom: 1.5;	/*放大演示*/
+			overflow: hidden;	/*隐藏超出&滚动条*/
+		}
+		h2{
+			font-size: 1em;
+		}
+		section{	/*设定按钮框模块容器*/
+			font-size: 0;
+			/*background-color: pink;*/
+			position: relative;
+			width: 100px;
+			margin: auto;
+		}
+		section *{
+			font-size: 16px;
+		}
+		#ios-checkbox{
+			display: none;
+		}
+	/*	#ios-checkbox:checked + .new-cb {
+			background-color: #6ddc5f;
+			transition: .3s ease;
+		}*/
+		#ios-checkbox:checked + .new-cb + .new-cb-bk + .new-rd {	/*当被选定时，滑块右移27px*/
+			left: 27px;
+			/*transition: .3s ease;*/		/*因要来回滑动效果一致，故transition应在标签原始状态处设定*/
+		}
+		#ios-checkbox:checked + .new-cb + .new-cb-bk {	/*当被选定时，内填充new-cb-bk面积往中心收回(变小)，背景色显示new-cb底色#6ddc5f*/
+			/*background-color: #6ddc5f;*/
+			left: 30px;
+			top: 18px;
+			width: 0px;
+			height: 0px;
+		}
+		.new-cb{		/*设置操场大小、圆角、底色*/
+			border-radius: 999px; 
+			width: 60px;
+			height: 36px;
+			display: inline-block;
+			background-color: #6ddc5f;	/*预先设置背景底色#6ddc5f*/
+		}
+		.new-cb-bk{		/*设置填充色模块的定位、圆角、大小、背景（表层）颜色、动画*/
+			position: absolute;
+			border-radius: 999px; 
+			display: inline-block;
 
-	section{
-		font-size: 0;
-		/*background-color: pink;*/
-		position: relative;
-		width: 100px;
-		margin: auto;
-	}
-	section *{
-		font-size: 16px;
-	}
-	#ios-checkbox{
-		display: none;
-	}
-	#ios-checkbox:checked + .new-cb {
-		/*background-color: #6ddc5f;*/
-		/*transition: .3s ease;*/
-	}
-	#ios-checkbox:checked + .new-cb + .new-cb-bk + .new-rd {
-		/*background-color: red;*/
-		left: 27px;
-		/*transition: .3s ease;*/
-		/*padding: 50px；*/
-	}
-	#ios-checkbox:checked + .new-cb + .new-cb-bk {
-		box-sizing: border-box;
-		display: inline-block;
-		/*background-color: #6ddc5f;*/
+			top: 0px;		/*设定未触发时背景#ddd覆盖new-cb操场底色#6ddc5f，触发后面积变小，底色露出*/
+			left: 0px;
+			width: 60px;
+			height: 36px;
+			background-color: #ddd;
+			transition: .3s linear;
+			/*transition: .3s cubic-bezier(.52,.08,.34,.39);*/
+		}
+		.new-rd{		/*设定圆形滑块大小，圆角，动画*/
+			width: 30px;
+			height: 30px;
+			border-radius: 999px;
+			display: inline-block;
+			background-color: #fff;
+			position: absolute;
+			top: 3px;
+			left: 3px;
+			box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
+			transition: .3s ease;
+		}
 
-		left: 30px;
-		top: 18px;
-		width: 0px;
-		height: 0px;
 
-	}
-	.new-cb{
-		border-radius: 999px; 
-		width: 60px;
-		height: 36px;
-		/*box-sizing: border-box;*/
-		/*padding: auto;*/
+	/*-------以下为twitter-star样式-------*/
 
-		/*inline-block 会导致边缘象素遗留*/
-		display: inline-block;
-		background-color: #6ddc5f;
-		/*transition: .3s ease;*/
-	}
-	.new-cb-bk{
-		position: absolute;
-		border-radius: 999px; 
-		/*box-sizing: border-box;*/
-
-		top: 0px;
-		left: 0px;
-		width: 60px;
-		height: 36px;
-		background-color: #ddd;
-		transition: .3s linear;
-		/*transition: .3s cubic-bezier(.52,.08,.34,.39);*/
-	}
-	.new-rd{
-		width: 30px;
-		height: 30px;
-		border-radius: 999px;
-		/*padding: auto;*/
-		box-sizing: border-box;
-		display: inline-block;
-		background-color: #fff;
-		position: absolute;
-		top: 3px;
-		left: 3px;
-		/*box-shadow: 0 2px 3px 0px #bbb;*/
-		box-shadow: 0 2px 3px 0px rgba(0, 0, 0, 0.16);
-		transition: .3s ease;
-	}
-
-/*#6ddc5f*/
-	#star_box{
-		display: none;
-		/*position: absolute;
-		top: -10px;*/
-	}
-	.star_buttom{
-		width: 65px;
-		height: 50px;
-		position: relative;
-		/*background-color: #aaa;*/
-		margin: auto;
-		overflow: hidden;
-	}
-/*	.star_fav{
-		position: absolute;
-		width: 50px;
-		height: 50px;
-		top: 0px;
-		left: 0px;
-		background-color: #ccc;
-	}*/
-	.star_icon{
-		background-image: url(./img/web_heart_animation_edge.png);
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 10000px;
-		height: 100px;
-		zoom: 0.6;
-		transition: 0s;
-		cursor:pointer;
-	}
-	.star_icon:hover{
-		left: -100px;
-	}
-	.star_icon:hover + .star_num{
-		color: #e0245e;
-	}
-	.star_num:hover{
-		color: #e0245e;
-		/*background-color: inherit;*/
-	}
-	/*class + class 按标签顺序只下一个有效*/
-	/*.star_num:hover + .star_icon{
-		left: -100px;
-	}*/
-	.star_num{
-		/*color: inherit;*/
-		cursor:pointer;
-		position: absolute;
-		top: 19px;
-		color: #666;
-		right: 0;
-		font-size: .8em linear;
-		display: inline-block;
-		/*transition: 10s;*/
-		/*transition-timing-function: steps(28)*/
-
-	}
-	#star_box:checked + .star_icon{
-		left: -2800px;
-		/*transition-property: left;
-		transition-duration:  .5s;*/
-		transition: .5s;
-		transition-timing-function: steps(27)
-	}
-	#star_box:checked + .star_icon + .star_num{
-		transition: .01s;
-		color: #e0245e;
-		/*color: green;*/
-		transition-timing-function: steps(27);
-	}
-</style>
+		#star_box{
+			display: none;
+		}
+		.star_buttom{		/*设定star容器大小，定位*/
+			width: 65px;
+			height: 50px;
+			position: relative;
+			/*background-color: #aaa;*/
+			margin: auto;
+			overflow: hidden;	/*截取超出部分*/
+		}
+		.star_icon{		/*设定star_icon背景，定位*/
+			background-image: url(./img/web_heart_animation_edge.png);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 10000px;
+			height: 100px;
+			zoom: 0.6;
+			transition: 0s;
+			cursor:pointer;
+		}
+		.star_icon:hover{	/*设定star_icon在hover时左移动100px*/
+			left: -100px;
+		}
+		#star_box:checked + .star_icon{	/*设定star_icon触发时动画方式*/
+			left: -2800px;
+			transition: .5s;
+			transition-timing-function: steps(27)
+		}
+		/*.star_icon:hover + .star_num{
+			color: #e0245e;
+		}
+		.star_num:hover{
+			color: #e0245e;
+		}*/
+		/*class + class 按标签顺序只下一个有效*/
+		/*.star_num:hover + .star_icon{
+			left: -100px;
+		}*/
+		/*.star_num{
+			color: inherit;
+			cursor:pointer;
+			position: absolute;
+			top: 19px;
+			color: #666;
+			right: 0;
+			font-size: .8em linear;
+			display: inline-block;
+			transition: 10s;
+			transition-timing-function: steps(28)
+		}*/
+		/*#star_box:checked + .star_icon + .star_num{
+			transition: .01s;
+			color: #e0245e;
+			color: e0245e;
+			transition-timing-function: steps(27);
+		}*/
+	</style>
 </head>
 <body>
 
@@ -171,19 +142,25 @@
   <!-- <p>边缘还有象素格子，待改进</p> -->
   <section>
   	<input type="checkbox" id="ios-checkbox">
+  	<!-- 替代checkbox的灰色圆形操场 -->
   	<label for="ios-checkbox" class="new-checkbox new-cb">
   	</label>
+  	<!-- 内填充颜色 -->
 	  <label for="ios-checkbox" class="new-checkbox new-cb-bk"></label>
+	  <!-- 圆形滑动滑钮 -->
 	  <label for="ios-checkbox" class="new-checkbox new-rd"></label>
   </section>
+
+
   <h2>Twitter Star </h2>
 	<div class="star_buttom">
 		<input type="checkbox" id="star_box">
 		<!-- <label for="star_box" class="star_fav"></label> -->
+
+		<!-- star_icon动画背景 -->
 		<label for="star_box" class="star_icon"></label>
 
 		<!-- star数量动画，待完善显示异常 -->
-		
 		<!-- <label for="star_box" class="star_num">9k</label> -->
 		<!-- <label for="star_box" class="star_icon"></label> -->
 
