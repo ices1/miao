@@ -6,6 +6,7 @@
 	html,body{
 		/*background-color: yellow;*/
 		background-color: #fff;
+		zoom: 1.5;
 		/*margin: 0px;*/
 		/*height: 100%*/
 	}
@@ -86,11 +87,83 @@
 	}
 
 /*#6ddc5f*/
+	#star_box{
+		display: none;
+		/*position: absolute;
+		top: -10px;*/
+	}
+	.star_buttom{
+		width: 65px;
+		height: 50px;
+		position: relative;
+		/*background-color: #aaa;*/
+		margin: auto;
+		overflow: hidden;
+	}
+/*	.star_fav{
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		top: 0px;
+		left: 0px;
+		background-color: #ccc;
+	}*/
+	.star_icon{
+		background-image: url(./img/web_heart_animation_edge.png);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 10000px;
+		height: 100px;
+		zoom: 0.6;
+		transition: 0s;
+		cursor:pointer;
+	}
+	.star_icon:hover{
+		left: -100px;
+	}
+	.star_icon:hover + .star_num{
+		color: #e0245e;
+	}
+	.star_num:hover{
+		color: #e0245e;
+		/*background-color: inherit;*/
+	}
+	/*class + class 按标签顺序只下一个有效*/
+	/*.star_num:hover + .star_icon{
+		left: -100px;
+	}*/
+	.star_num{
+		/*color: inherit;*/
+		cursor:pointer;
+		position: absolute;
+		top: 19px;
+		color: #666;
+		right: 0;
+		font-size: .8em linear;
+		display: inline-block;
+		/*transition: 10s;*/
+		/*transition-timing-function: steps(28)*/
+
+	}
+	#star_box:checked + .star_icon{
+		left: -2800px;
+		/*transition-property: left;
+		transition-duration:  .5s;*/
+		transition: .5s;
+		transition-timing-function: steps(27)
+	}
+	#star_box:checked + .star_icon + .star_num{
+		transition: .01s;
+		color: #e0245e;
+		/*color: green;*/
+		transition-timing-function: steps(27);
+	}
 </style>
 </head>
 <body>
 
-  <h2>ios-checkbox animation</h2>
+  <h2>ios-Checkbox</h2>
   <!-- <p>边缘还有象素格子，待改进</p> -->
   <section>
   	<input type="checkbox" id="ios-checkbox">
@@ -99,7 +172,18 @@
 	  <label for="ios-checkbox" class="new-checkbox new-cb-bk"></label>
 	  <label for="ios-checkbox" class="new-checkbox new-rd"></label>
   </section>
+  <h2>Twitter Star </h2>
+	<div class="star_buttom">
+		<input type="checkbox" id="star_box">
+		<!-- <label for="star_box" class="star_fav"></label> -->
+		<label for="star_box" class="star_icon"></label>
 
+		<!-- star数量动画，待完善显示异常 -->
+		
+		<!-- <label for="star_box" class="star_num">9k</label> -->
+		<!-- <label for="star_box" class="star_icon"></label> -->
+
+	</div>
 </body>
 
 </html>
