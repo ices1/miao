@@ -3,599 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>小米商城</title>
-	<style>
-		body{
-			margin: 0;
-			font-family: '微软雅黑'
-		}
-		ul{
-			list-style: none;
-			padding: 0;
-			margin: 0;
-		}
-		a{
-			text-decoration: none;
-			color: #343434;
-		}
-
-		.banner-top{
-			background-image: url(https://i1.mifile.cn/a4/cms_15270400062082_IKomG.jpg);
-			background-position: center;
-			/*width: 100%;*/
-			width: 1226px;
-			padding: 0 calc(50% - 613px);
-			height: 120px;
-			margin: 0;
-		}
-		.banner-top a{
-			display: block;
-			width: 100%;
-			height: 100%;
-		}
-		.nav-top{
-			width: 1226px;
-			padding: 0 calc(50% - 613px);
-			margin: 0;
-			background-color: #333;
-			height: 40px;
-			font-size: 0.5em;
-		}
-		.nav-top ul{
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			display: inline-block;
-		}
-		.nav-top a{
-			text-decoration: none;
-			color: #b0b0b0;
-			line-height:40px;
-		}
-		.nav-top a:hover{
-			color: #fff
-		}
-		.nav-top .nav-top-product{
-			float: left;
-		}
-		.nav-top .nav-top-product li{
-			/*float:left;*/
-			display: inline-block;
-		}
-		.nav-top .nav-top-account{
-			float: right;
-		}
-		.nav-top .nav-top-account li{
-			float: right;
-			/*display: inline-block;*/
-		}
-		.nav-top .nav-top-product li:nth-last-child(n + 2)::after, .nav-top-account li:nth-child(n + 2)::after{
-			content: '|';
-			margin: 0 0.5em;
-			color: #424242;
-			/*background: red;*/
-		}
-		.nav-top .nav-shopping-cat{
-			text-align: center;
-			width: 120px;/*
-			background-image: url(https://png.icons8.com/android/50/000000/shopping-cart.png);
-			background-repeat: no-repeat;
-			background-size: 20px 20px;*/
-			overflow: hidden;
-			height: 40px;
-			background-color: #424242;
-			transition: 0s;
-			position: relative;
-		}
-		.nav-top .nav-shopping-cat:hover{
-			color: #f60;
-			background-color: #fff;
-			overflow: visible;
-		}
-		.nav-top .nav-shopping-cat:hover a{
-			color: #f60;
-		}
-		.nav-top .nav-shopping-cat:hover div{
-			/*visibility: visible;*/
-			height: 100px;
-			transition: .3s
-			/*z-index: 300;*/
-		}
-		.nav-top .nav-shopping-cat:hover div span{
-			line-height: 100px;
-			transition: .3s;
-		}
-		.nav-top .nav-shopping-cat img{
-			display: inline-block;
-			width: 20px;
-			height: 18px;
-		}
-		.nav-top .nav-shopping-cat div{
-			position: absolute;
-			right: 0;
-			background: #fff;
-			/*vertical-align: center;*/
-			/*visibility: hidden;*/
-			width: 300px;
-			height: 0px;
-			z-index: 300;
-			box-shadow:  0 2px 10px rgba(0,0,0,0.15);
-			/*box-shadow:  -2px 2px 2px 2px #ddd;*/
-		}
-		.nav-top .nav-shopping-cat div span{
-			color: #424242;
-			line-height: 0px;
-		}
-		.home-page-container{
-			width: 1226px;
-			margin: auto;
-		}
-		.sub-nav{
-			height: 100px;
-			/*background-color: #1111;*/
-			line-height: 100px;
-		}
-		.sub-nav-logo{
-			display: inline-block;
-			width: 55px;
-			height: 55px;
-			vertical-align: middle;
-			background: url(img/mi-logo.png), url(img/mi-home.png);
-			background-repeat: no-repeat;
-			background-color: #ff6700;			/*背景色在背景图像后*/
-			transition: .3s;
-			background-position:  3px 3px, 58px 3px ;
-		}
-		.sub-nav-logo:hover{
-			background-position: -52px 3px, 3px 3px;
-		}
-		.sub-nav-product{
-			width: 671px;
-			display: inline-block;
-			list-style: none;
-			padding: 0 0 0 179px;
-			margin: 0;
-		}
-		.sub-nav-product li{
-			display: inline-block;
-			padding: 0 10px;
-		}
-		.sub-nav-product li a{
-			text-decoration: none;
-			color: #343434;
-		}
-		.search-box{
-			display: inline-block;
-			float: right;
-			margin-top: 25px; 
-			height: 50px;
-			line-height: 50px;
-		}
-		.search-place{
-			width: 245px;
-			height: 50px;
-			padding: 0 10px;
-			line-height: 50px;
-			box-sizing: border-box;
-			border: 1px solid #ddd;
-			font-size: 16px; 
-			transition: .1s;
-		}
-		.search-bt{
-			display: inline-block;
-			margin-left: -6px;
-			box-sizing: border-box;
-			padding: 10px;
-			background: #fff;
-			background-image: url(img/search.png);
-			background-size: contain;
-			background-origin: content-box;
-			background-repeat: no-repeat;
-			height: 50px;
-			width: 50px;
-			border: 1px solid #ddd;
-			font-size: 16px; 
-			cursor: pointer;
-			/*transition: .1s;*/
-		}
-		.search-bt:hover{
-			background-color: #ff6700;
-		}
-		.search-place:hover + .search-bt{
-			border-color: #aaa;
-		}
-		.search-place:hover{
-			border-color: #aaa;
-		}
-		.search-place:focus{
-			outline: none;
-			border-color: #ff6700;
-		}
-		.search-place:focus + .search-bt{
-			border-color: #ff6700;
-		}
-		.search-history{
-			display: none;
-			position: absolute;
-			border: 1px solid #ff6700;
-			margin-top: -1px; 
-			width: 243px;
-			z-index: 200;
-		}
-		.search-history ul {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-			font-size: 0.8em;
-			color: #343434;
-			background-color: #fff;
-		}
-		.search-history ul li{
-			padding: 0 10px;
-			height: 2.5em;
-			line-height: 2.5em;
-			width: auto;
-		}
-		.search-history ul li:hover{
-			background: #eee;
-		}
-		.search-history ul li a{
-			display: inline-block;
-			width: 100%;
-			text-decoration: none;
-			color: #343434;
-		}
-		.search-history ul li a span{
-			float: right;
-			color: #999;
-			font-size: 0.6em;
-		}
-		.search-place:focus + .search-bt + .search-history{
-			display: block;
-		}
-
-		/*********************以下为banner-max部分************************/
-		.banner-max{
-			height: 460px;
-			/*background-image: url(img/banner-max1.jpg);*/
-			background-size: cover;
-			position: relative;
-			z-index: 0;
-		}
-		.banner-max-box{
-			position: absolute;
-			height: 460px;
-			width: 1226px;
-			z-index: -100			/*觉得定位后文本脱体文档流，会覆盖其他元素导致无法交互*/
-			/*background-color: #fff;*/
-		}
-		.banner-max-box input{
-			position: relative;
-			top: 420px;
-			left: 1050px;
-			cursor: pointer;
-			z-index: 100px;
-		}
-		label.banner-max-container1{
-			background-image: url(img/banner-max1.jpg);
-		}
-		label.banner-max-container2{
-			background-image: url(img/banner-max2.jpg);
-		}
-		label.banner-max-container3{
-			background-image: url(img/banner-max3.jpg);
-		}
-		label.banner-max-container4{
-			background-image: url(img/banner-max4.jpg);
-		}
-		label.banner-max-container5{
-			background-image: url(img/banner-max5.jpg);
-		}
-		label.banner-max-container6{
-			background-image: url(img/banner-max6.jpg);
-		}
-		.banner-max-box label{
-			/*display: none;*/
-			opacity: 0;
-			position: absolute;
-			width: 1226px;
-			height: 460px;
-			margin-left:-150px; 
-			z-index: -100;
-
-			background-size: cover;
-			transition: .8s;
-		}
-		.banner-max-box input:checked + * + * + * + * + * + label{
-			/*display: block;*/
-			opacity: 100;
-			/*background-color: #6786;*/
-		}
-
-		.banner-nav-container{
-			width: 234px;
-		}
-		.banner-nav-container > ul{
-			width: 234px;
-			height: 420px;
-			padding: 20px 0;
-			background-color: rgba(0,0,0,0.5);
-		}
-		.banner-nav-container > ul > li{
-			font-size: 14px;
-			/*position: relative;*/
-			height: 42px;
-			line-height: 42px;
-			/*transition: .3s;*/
-		}
-		.banner-nav-container > ul > li::after{
-			display: inline-block;
-			float: right;
-			margin-top: -42px; 
-			margin-right:10px;
-			content: '＞';
-			font-size: 1.3em;
-			/*position: absolute;*/
-			/*right: 10px;*/
-			color: #9997;
-			pointer-events：none;
-		}
-		.banner-nav-container > ul > li:hover{
-			background-color: #ff6700;
-		}
-		.banner-nav-container > ul > li > a{
-			display: inline-block;
-			color: #fff;
-			padding-left: 30px; 
-			width: 204px;
-		}
-		.banner-nav-sub{
-			display: none;
-			background: #fff;
-			width: 800px;
-			height: 460px;
-			position: absolute;			/*需要变化时窗口位置不变，所以应该相对border-max 绝对定位*/
-			left: 234px;
-			top: 0px;
-			/*border: 1px solid #999;*/
-			box-shadow: 2px 2px 8px 1px #9998 ;
-			/*box-sizing: border-box;*/
-		}
-		.banner-nav-sub li{
-			/*width: 225px;*/
-			float: left;
-			height: 77px;
-			line-height: 77px;
-		}
-		.banner-nav-sub li a{
-			display: inline-block;
-			width: 225px;
-			color: #343434;
-			padding: 0 20px;
-			transition: .2s;
-		}
-		.banner-nav-sub li a:hover{
-			color: #ff6700;
-		}
-		.banner-nav-sub li img{
-			width: 40px;
-			height: 40px;
-			vertical-align: middle;
-			margin-right: 12px;
-		}
-		.banner-nav-container > ul > li:hover .banner-nav-sub{
-			display: block;
-		}
-		/*以下是banner bottom部分*/
-		.banner-bottom{
-			background-color: #1111;
-			height: 170px;
-			margin-top: 14px;
-		}
-		.mi-expressway{
-			width: 234px;
-			background-color: #5f5750;
-			float: left;
-			height: 170px;
-		}
-		.mi-expressway li{
-			float: left;
-			height: 82px;
-			/*box-shadow: 0 0 1px 1px red;*/
-			line-height: 82px;
-			padding: 1.5px 4px;
-			position: relative;
-		}
-		.mi-expressway li::after{
-			position: absolute;
-			content: '';
-			width: 1px;
-			height:70px;
-			top: 6px;
-			right: 0px;
-			/*background-color: #665e57;*/
-			background-color: #666;
-		}
-		.mi-expressway li:nth-child(3n)::after{
-			display: none
-		}
-		.mi-expressway li:nth-child(n + 4)::before{
-			position: absolute;
-			content: '';
-			height: 1px;
-			width: 62px;
-			top: -3px;
-			left: 8px;
-			/*background-color: #665e57;*/
-			background-color: #666;
-		}
-		.mi-expressway li a{
-			float: left;
-			/*padding: 5px;*/
-			display: inline-block;
-			color: #cfcdcb;
-			font-size: 12px;
-			width: 70px;
-			height: 64px;
-			text-align: center;
-		}
-		.mi-expressway li a:hover{
-			color: #fff
-		}
-
-		.hot-item li {
-			float: right;
-			width: 316px;
-		}
-		.hot-item li:nth-child( -n + 2) {
-			display: inline-block;
-			margin-left: 15px;
-		}
-		.hot-item li img{
-			width: 316px;
-		}
-		/*闪购*/
-		.box-title{
-			display: flow-root;
-			width: 1226px;
-			height: 58px;
-			line-height: 58px;
-			margin-top: 20px;
-		}
-		.box-title h2{
-			display: inline-block;
-			margin: 0;
-			font-size: 22px;
-			font-weight: 200;
-			color: #333;
-		}
-		.box-title .box-tab{
-			float: right;
-		}
-		.flash-buy-title .box-tab span a{
-			display: inline-block;
-			line-height: 20px;
-			color: #999;
-			padding: 2px 10px;
-			border: 1px solid #ddd;
-			cursor: pointer;
-		}
-		.flash-buy-title .box-tab span a:hover{
-			color: #ff6700;
-		}
-		.flash-buy	{
-			width: 1226px;
-			height: 340px;
-			/*background-color: rgba(0,0,0,0.1);*/
-		}
-		.flash-buy-time{
-			width: 234px;
-			height: 340px;
-			float: left;
-			background-color: #f1eded;
-			border-top: 1px solid  #e53935;
-		}
-		.flash-buy-time .time-title{
-			display: inline-block;
-			color: #ef3a3b;
-			font-size: 21px;
-			margin-top: 45px;
-		} 
-		.flash-buy-time span img{
-			width: unset;
-			height: unset;
-			margin: 25px 0;
-		}
-		.flash-buy-time .time-tip{
-			font-size: 15px;
-			color: rgba(0,0,0,0.54);
-			margin-bottom: 15px;
-		}
-		.flash-buy-time .time-value div{
-			display: inline-block;
-			color: #605751;
-			font-size: 28px;
-			width: 15px;
-		}
-		.flash-buy-time .time-value span{
-			width: 46px;
-			padding: 0;
-			font-size: 24px;
-			height: 46px;
-			line-height: 46px;
-			color: #fff;
-			background-color: #605751;
-		}
-
-
-
-		.flash-buy-item li{
-			float: left;
-			width: 234px;
-			height: 339px;
-			margin-left: 14px; 
-			background-color: #fafafa;
-		}
-
-		/*product-item 公用类*/
-		.product-item span {
-			display: inline-block;
-			text-align: center;
-			width: 100%;
-			padding: 5px 0;
-		}
-		.product-item img{
-			width: 160px;
-			height: 160px;
-			margin: 35px 0 15px 0 ;
-		}
-		.product-item-title{
-			font-size: 14px;
-		}
-		.product-item-tip{
-			font-size: 12px;
-			color: #999;
-		}
-		.product-item .product-item-price{
-			font-size: 13px;
-			color: #ff6700;
-		}
-		.product-item .product-item-old-price{
-			font-size: 13px;
-			color: #999;
-			text-decoration: line-through;
-			width: unset;
-			padding-left: 5px
-		}
-		/*product-item 公用类结束*/
-
-		.flash-buy-item li:nth-child(1){
-			border-top: 1px solid #ffac13;
-		}
-		.flash-buy-item li:nth-child(2){
-			border-top: 1px solid #83c44e;
-		}
-		.flash-buy-item li:nth-child(3){
-			border-top: 1px solid #2196f3;
-		}
-		.flash-buy-item li:nth-child(4){
-			border-top: 1px solid #e53935;
-		}
-		.banner-middle img{
-			width: 1226px;
-			height: 120px;
-			margin: 40px 0;
-		}
-		/*以下为产品展示区样式*/
-		.show-product{
-			background-color: #f5f5f5;
-			/*这样会导致窗口缩放后移动水平滚动条背景不完全, 要加上width：1226px
-			padding: 0 calc(50% - 613px)*/	
-			/*width: 100%;*/
-			width: 1226px;
-			padding: 0 calc(50% - 613px)
-		}
-
-	</style>
+	<link rel="stylesheet" href="css/home-page.css">
 </head>
 <body>
 	<header>
@@ -625,11 +33,12 @@
 				</div>
 			</li>
 			<li><a href="">消息通知</a></li>
-			<li><a href="">注册</a></li>
+			<li><a href=""> 注册</a></li>
 			<li><a href="">登入</a></li>
 		</ul>
 	</nav>
 	<div class="home-page-container">
+		<!-- 全品导航栏 -->
 		<div class=" sub-nav">
 			<span class="sub-nav-logo"></span>
 			<ul class="sub-nav-product">
@@ -662,6 +71,7 @@
 				</div>
 			</div>
 		</div>
+		<!-- 大海报 -->
 		<div class="banner-max">
 			<div class="banner-max-box">
 				<input checked type="radio" name="banner-max-img">
@@ -982,40 +392,825 @@
 
 		<!-- 手机 -->
 		<div>
-			<div class="flash-buy-title box-title">
+			<div class="box-title">
 				<h2>手机</h2>
 				<div class="box-tab">
 					<span><a href="">查看全部 &gt;</a></span>
 				</div>
 			</div>
 			<div>
-				asdfasdfasdf
+				<div class="product-banner">
+					<a href=""><img src="img/shouji-left.jpg" alt=""></a>
+				</div>
+				<div class="product-item product-item-shouji">
+					<ul>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">1499元
+								<span class="product-item-old-price"></span>
+							</span>
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item3.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">3299元
+								<span class="product-item-old-price">4699元</span>
+							</span>
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item2.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">2399元
+								<span class="product-item-old-price">2699元</span>
+							</span>
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item3.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">2299元
+								<span class="product-item-old-price">3299元</span>
+							</span>
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">1499元
+								<span class="product-item-old-price"></span>
+							</span>
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item2.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">1499元
+								<span class="product-item-old-price">499元</span>
+							</span>
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">1499元
+								<span class="product-item-old-price"></span>
+							</span>
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/shouji-item2.jpg" alt=""></span>
+								<span class="product-item-title">小米6X 4GB+32GB </span>
+							</a> 
+							<span class="product-item-tip">全索尼相机，骁龙660 AIE处理器</span>
+							<span class="product-item-price">1499元
+								<span class="product-item-old-price">2499元</span>
+							</span>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div class="banner-middle">
 				<img src="img/banner-middle2.jpg" alt="">
 			</div>
-			
 		</div>
 		<!-- 家电 -->
 		<div>
-			<div class="flash-buy-title box-title">
+			<div class="box-title">
 				<h2>家电</h2>
 				<div class="box-tab">
 					<span><a href="">查看全部 &gt;</a></span>
 				</div>
 			</div>
 			<div>
-				asdfasdfasdf
+				<div class="product-banner product-banner-db">
+					<ul>
+						<li><a href=""><img src="img/jiadian-left1.jpg" alt=""></a></li>
+						<li><a href=""><img src="img/jiadian-left2.jpg" alt=""></a></li>
+					</ul>
+				</div>
+				<div class="product-item product-item-shouji">
+					<ul>
+						<li>
+							<a href="">
+								<span class="promotion-tip">减免300元</span>
+								<span><img src="img/jiadian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="promotion-tip">减免300元</span>
+								<span><img src="img/jiadian-item2.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/jiadian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/jiadian-item2.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="promotion-tip">享8折</span>
+								<span><img src="img/jiadian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/jiadian-item2.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="new-product">新品</span>
+								<span><img src="img/jiadian-item3.jpg" alt=""></span>
+								<span class="product-item-title">米家LED吸顶灯 </span>
+								<span class="product-item-tip">用光线，还原理想生活</span>
+								<span class="product-item-price">399元
+									<span class="product-item-old-price"></span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li class="product-small-item">
+							<a href="">
+								<span>
+									<span class="small-item-title">小米净水器...</span>
+									<span class="small-item-price">1779元</span>
+								</span>
+								<span><img src="img/jiadian-item-s.jpg" alt=""></span>
+							</a>
+						</li>
+						<li class="product-small-item small-item-more">
+							<a href="">
+								<span>
+									<span class="small-item-title small-item-read">浏览更多</span>
+									<span class="small-item-price small-item-hot">热门</span>
+								</span>
+								<span><img src="img/small-item-go.jpg" alt=""></span>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 			<div class="banner-middle">
 				<img src="img/banner-middle3.jpg" alt="">
 			</div>				
 		</div>
-		safasfdsaf
-		<h1>fooooooooooooooooooooo</h1>
-		<h1>fooooooooooooooooooooo</h1>
-		<h1>fooooooooooooooooooooo</h1>
-		<h1>fooooooooooooooooooooo</h1>
+		<!-- 智能 -->
+		<div>
+			<div class="box-title">
+				<h2>智能</h2>
+				<div class="box-tab">
+					<span><a href="">查看全部 &gt;</a></span>
+				</div>
+			</div>
+			<div>
+				<div class="product-banner product-banner-db">
+					<ul>
+						<li><a href=""><img src="img/zhineng-left1.jpg" alt=""></a></li>
+						<li><a href=""><img src="img/zhineng-left1.jpg" alt=""></a></li>
+					</ul>
+				</div>
+				<div class="product-item product-item-shouji">
+					<ul>
+						<li>
+							<a href="">
+								<!-- <span class="promotion-tip">减免300元</span> -->
+								<span><img src="img/zhineng-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<!-- <span class="promotion-tip">减免300元</span> -->
+								<span><img src="img/zhineng-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/zhineng-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/zhineng-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<!-- <span class="promotion-tip">享8折</span> -->
+								<span><img src="img/zhineng-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/zhineng-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="promotion-tip">减60元</span>
+								<span><img src="img/zhineng-item1.jpg" alt=""></span>
+								<span class="product-item-title">米家LED吸顶灯 </span>
+								<span class="product-item-tip">用光线，还原理想生活</span>
+								<span class="product-item-price">399元
+									<span class="product-item-old-price"></span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li class="product-small-item">
+							<a href="">
+								<span>
+									<span class="small-item-title">小米净水器...</span>
+									<span class="small-item-price">1779元</span>
+								</span>
+								<span><img src="img/jiadian-item-s.jpg" alt=""></span>
+							</a>
+						</li>
+						<li class="product-small-item small-item-more">
+							<a href="">
+								<span>
+									<span class="small-item-title small-item-read">浏览更多</span>
+									<span class="small-item-price small-item-hot">热门</span>
+								</span>
+								<span><img src="img/small-item-go.jpg" alt=""></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="banner-middle">
+				<img src="img/banner-middle4.jpg" alt="">
+			</div>				
+		</div>
+		<!-- 搭配 -->
+		<div>
+			<div class="box-title">
+				<h2>搭配</h2>
+				<div class="box-tab">
+					<span><a href="">查看全部 &gt;</a></span>
+				</div>
+			</div>
+			<div>
+				<div class="product-banner product-banner-db">
+					<ul>
+						<li><a href=""><img src="img/dapei-left1.jpg" alt=""></a></li>
+						<li><a href=""><img src="img/dapei-left1.jpg" alt=""></a></li>
+					</ul>
+				</div>
+				<div class="product-item product-item-shouji">
+					<ul>
+						<li>
+							<a href="">
+								<!-- <span class="promotion-tip">减免300元</span> -->
+								<span><img src="img/dapei-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="promotion-tip">减免300元</span>
+								<span><img src="img/dapei-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/dapei-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/dapei-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<!-- <span class="promotion-tip">享8折</span> -->
+								<span><img src="img/dapei-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/dapei-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<!-- <span class="new-product">新品</span> -->
+								<span><img src="img/dapei-item1.jpg" alt=""></span>
+								<span class="product-item-title">米家LED吸顶灯 </span>
+								<span class="product-item-tip">用光线，还原理想生活</span>
+								<span class="product-item-price">399元
+									<span class="product-item-old-price"></span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li class="product-small-item">
+							<a href="">
+								<span>
+									<span class="small-item-title">小米净水器...</span>
+									<span class="small-item-price">1779元</span>
+								</span>
+								<span><img src="img/jiadian-item-s.jpg" alt=""></span>
+							</a>
+						</li>
+						<li class="product-small-item small-item-more">
+							<a href="">
+								<span>
+									<span class="small-item-title small-item-read">浏览更多</span>
+									<span class="small-item-price small-item-hot">热门</span>
+								</span>
+								<span><img src="img/small-item-go.jpg" alt=""></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="banner-middle">
+				<img src="img/banner-middle5.jpg" alt="">
+			</div>				
+		</div>
+		<!-- 配件 -->
+		<div>
+			<div class="box-title">
+				<h2>配件</h2>
+				<div class="box-tab">
+					<span><a href="">查看全部 &gt;</a></span>
+				</div>
+			</div>
+			<div>
+				<div class="product-banner product-banner-db">
+					<ul>
+						<li><a href=""><img src="img/peijian-left1.jpg" alt=""></a></li>
+						<li><a href=""><img src="img/peijian-left1.jpg" alt=""></a></li>
+					</ul>
+				</div>
+				<div class="product-item product-item-shouji">
+					<ul>
+						<li>
+							<a href="">
+								<span class="promotion-tip">减免300元</span>
+								<span><img src="img/peijian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<!-- <span class="promotion-tip">减免300元</span> -->
+								<span><img src="img/peijian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/peijian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/peijian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<!-- <span class="promotion-tip">享8折</span> -->
+								<span><img src="img/peijian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/peijian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<!-- <span class="new-product">新品</span> -->
+								<span><img src="img/peijian-item1.jpg" alt=""></span>
+								<span class="product-item-title">米家LED吸顶灯 </span>
+								<span class="product-item-tip">用光线，还原理想生活</span>
+								<span class="product-item-price">399元
+									<span class="product-item-old-price"></span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li class="product-small-item">
+							<a href="">
+								<span>
+									<span class="small-item-title">小米净水器...</span>
+									<span class="small-item-price">1779元</span>
+								</span>
+								<span><img src="img/jiadian-item-s.jpg" alt=""></span>
+							</a>
+						</li>
+						<li class="product-small-item small-item-more">
+							<a href="">
+								<span>
+									<span class="small-item-title small-item-read">浏览更多</span>
+									<span class="small-item-price small-item-hot">热门</span>
+								</span>
+								<span><img src="img/small-item-go.jpg" alt=""></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="banner-middle">
+				<img src="img/banner-middle6.jpg" alt="">
+			</div>				
+		</div>
+		<!-- 周边 -->
+		<div>
+			<div class="box-title">
+				<h2>周边</h2>
+				<div class="box-tab">
+					<span><a href="">查看全部 &gt;</a></span>
+				</div>
+			</div>
+			<div>
+				<div class="product-banner product-banner-db">
+					<ul>
+						<li><a href=""><img src="img/zhoubian-left1.jpg" alt=""></a></li>
+						<li><a href=""><img src="img/zhoubian-left1.jpg" alt=""></a></li>
+					</ul>
+				</div>
+				<div class="product-item product-item-shouji">
+					<ul>
+						<li>
+							<a href="">
+								<span class="promotion-tip">减免300元</span>
+								<span><img src="img/zhoubian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="promotion-tip">减免300元</span>
+								<span><img src="img/zhoubian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/zhoubian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/zhoubian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="promotion-tip">享8折</span>
+								<span><img src="img/zhoubian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4A 43英寸青春版 </span>
+								<span class="product-item-tip">全高清 / 人工智能语音</span>
+								<span class="product-item-price">1399元
+									<span class="product-item-old-price">1699</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span><img src="img/zhoubian-item1.jpg" alt=""></span>
+								<span class="product-item-title">小米电视4C 50英寸 </span>
+								<span class="product-item-tip">4K HDR / 人工智能语音</span>
+								<span class="product-item-price">1899元
+									<span class="product-item-old-price">2199元</span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li>
+							<a href="">
+								<span class="new-product">新品</span>
+								<span><img src="img/zhoubian-item1.jpg" alt=""></span>
+								<span class="product-item-title">米家LED吸顶灯 </span>
+								<span class="product-item-tip">用光线，还原理想生活</span>
+								<span class="product-item-price">399元
+									<span class="product-item-old-price"></span>
+								</span>
+								<div class="product-item-evaluation">
+									<p class="evaluation-content">很不错, 很给力, 很棒棒棒棒棒棒棒棒棒棒棒棒. </p>
+									<p class="evaluation-by">来自 6587号火星人 的评价</p>
+								</div>
+							</a> 
+						</li>
+						<li class="product-small-item">
+							<a href="">
+								<span>
+									<span class="small-item-title">小米净水器...</span>
+									<span class="small-item-price">1779元</span>
+								</span>
+								<span><img src="img/jiadian-item-s.jpg" alt=""></span>
+							</a>
+						</li>
+						<li class="product-small-item small-item-more">
+							<a href="">
+								<span>
+									<span class="small-item-title small-item-read">浏览更多</span>
+									<span class="small-item-price small-item-hot">热门</span>
+								</span>
+								<span><img src="img/small-item-go.jpg" alt=""></span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="banner-middle">
+				<img src="img/banner-middle7.jpg" alt="">
+			</div>				
+		</div>
 		<h1>fooooooooooooooooooooo</h1>
 		<h1>fooooooooooooooooooooo</h1>
 		<h1>fooooooooooooooooooooo</h1>
@@ -1027,3 +1222,4 @@
 	<footer></footer>
 </body>
 </html>
+
