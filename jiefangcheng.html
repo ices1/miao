@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+
+	debugger
+	//二元一次方程
+	// a*x*x + b*x + c = 0
+	alert('求解二元一次方程: ax^2 + bx + c = 0')
+	var a = +prompt('a:')
+	var b = +prompt('b:')
+	var c = +prompt('c:')
+	//判断输入是否为空
+	if (a,b,c) {
+		a = +a
+		b = +b
+		c = +c
+		//判断是否为数字
+		if (a==a && b==b && c==c){
+			var delta = b * b - 4 * a * c
+			// 把 delta 判别式内 跟0比较
+			if (delta>0) {
+				// 两个解
+				var s_delta = Math.sqrt(delta)
+				var x1 = (-b + s_delta) / (2 * a)
+				var x2 = (-b - s_delta) / (2 * a)
+				console.log('两个实根：')
+				console.log('x1='+x1,'x2='+x2)
+			}else if(delta=0){
+				// 一个解
+				var x = (-b) / (2 * a)
+				console.log('一个实根:')
+				console.log('x='+x)
+			}else{
+				// 根为复数，delta加'-'再运算，根乘'i'
+				var i = 'i'
+				var s_delta = Math.sqrt(-delta)
+				var x1 = ((-b + s_delta) / (2 * a)) + i
+				var x2 = ((-b - s_delta) / (2 * a)) + i
+				console.log('两个复数根:')
+				console.log('x1='+x1,'x2='+x2)
+			}
+		}
+			else{
+		alert('Please enter by Number!')
+	}
+	}
+	else{
+		alert('Please enter by Number!')
+	}
+
+
+
+	//一元二次方程
+	// a*x + b*y = c ; 	d*x + e*y = f
+	alert('求解一元二次方程: ax + by = c, dx + ey = f')
+	var a = prompt('a:')
+	var b = prompt('b:')
+	var c = prompt('c:')
+	var d = prompt('d:')
+	var e = prompt('e:')
+	var f = prompt('f:')
+	//判断输入是否为空
+	if (a,b,c,d,e,f) {
+		a = +a
+		b = +b
+		c = +c
+		d = +d
+		e = +e
+		f = +f
+		//判断是否为数字
+		if (a==a && b==b && c==c && d==d && e==e && f==f){
+			if (a*d == b*e) {
+				// 无解
+				console.log('方程无解')
+			}else if(a*e == b*d){
+				// 有无数个解
+				console.log('方程有无数个解')
+			}else{
+				// 有唯一解
+				var x = (c * e - b * f)/(a * e - b *d)
+				var y = (a * f - c * d)/(a * e - b *d)
+				console.log('方程唯一解为:')
+				console.log('x='+x,'y='+y)
+			}
+		}
+		else{
+			alert('Please enter by Number!')
+		}
+	}
+	else{
+		alert('Please enter by Number!')
+	}
+
+</script>
+</html>
