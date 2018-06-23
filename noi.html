@@ -1,0 +1,558 @@
+
+<!-- ch0105 -->
+
+<!-- 01:计算平均年龄 -->
+<script id="ch0105/01">
+  var age = 0
+  var sumAge = 0
+  var avgAge = 0
+  var counter = Number(prompt('Enter the count, plesae: '))
+
+  while(counter > 100 || counter < 1|| !Number.isInteger(counter) || !counter){
+    // alert('Tips: 1 <= counter <= 100 ')
+    counter = Number(prompt('Enter the count, plesae: '))
+  }
+  for (var i = 0; i < counter; i++) {
+    age = Number(prompt("Age for the"+ (i + 1) +" :"))
+    if (age >= 15 && age <= 25 && Number.isInteger(age)) {
+      sumAge = sumAge + age
+      // console.log(age)
+      avgAge = (sumAge/counter).toFixed(2)      
+    }else{
+      // alert('Tips: 15 <= age <= 25')
+      i--
+      continue
+    }
+  }
+  console.log(avgAge)  
+</script>
+
+
+
+<!-- 02:财务管理 -->
+<script id="ch0105/02">
+  var money = 0
+  var sumMoney = 0
+  var avgMoney
+  var counter = 12
+
+  for (var i = 0; i < counter; i++) {
+    money = Number(prompt("Month "+ (i + 1) +" :"))
+    if (money > 0 && money <= 1000000) {
+      sumMoney = sumMoney + money
+    }else{
+      i--
+      continue
+    }
+    // console.log(sumMoney)
+  }
+  avgMoney = (sumMoney/counter).toFixed(2)
+  console.log('$' + avgMoney)
+</script>
+
+
+
+<!-- 03:均值 -->
+<script id="ch0105/03">
+  var num = 0
+  var sumNum = 0
+  var avgNum = 0
+  var n = Number(prompt('Enter a number, plesae: '))
+
+  while(n > 100 || n < 0 || !Number.isInteger(n) || !n){
+    // alert('Tips: 0 <= n <= 100 ')
+    n = Number(prompt('Enter a number, plesae: '))
+  }
+  for (var i = 0; i < n; i++) {
+    num = Number(prompt("Num "+ (i + 1) +" :"))
+    if (num <= 1000 && -num <= 1000) {
+      sumNum = sumNum + num
+      // console.log(num)
+      avgNum = (sumNum/n).toFixed(4)      
+    }else{
+      // alert(' Tips: -1000 <= num <= 1000 ')
+      i--
+      continue
+    }
+  }
+  console.log('$' + avgNum)  
+</script>
+
+
+
+<!-- 04:求整数和与均值 -->
+<script id="ch0105/04">
+  var num = 0
+  var sumNum = 0
+  var avgNum = 0
+  var n = Number(prompt('Enter a number, plesae: '))
+
+  while(n > 10000 || n < 0 || !Number.isInteger(n) || !n){
+    // alert('Tips: 0 <= n <= 10000 ')
+    n = Number(prompt('Enter a number, plesae: '))
+  }
+
+  for (var i = 0; i < n; i++) {
+    num = Number(prompt("Num "+ (i + 1) +" :"))
+    if (Number.isInteger(num)) {
+      sumNum = sumNum + num
+      // console.log(num)
+      avgNum = (sumNum/n).toFixed(5)      
+    }else{
+      // alert(' Tips: input int type')
+      i--
+      continue
+    }
+  }
+  console.log(sumNum, avgNum)  
+</script>
+
+
+
+<!-- 05:最高分 -->
+<script id="ch0105/05">
+  var num = 0
+  var maxNum = 0
+  var n = Number(prompt('Enter a number, plesae: '))
+
+  while(n > 100 || n < 0 || !Number.isInteger(n) || !n){
+    // alert('Tips: 0 <= n <= 100 ')
+    n = Number(prompt('Enter a number, plesae: '))
+  }
+
+  for (var i = 0; i < n; i++) {
+    num = Number(prompt("Num "+ (i + 1) +" :"))
+    if (Number.isInteger(num) && num <= 100 && num >= 0) {
+      if(maxNum >= num){
+        maxNum = maxNum
+      }else{
+        maxNum = num
+      }
+    }else{
+      // alert(' Tips: input int type  &  0 <= num <= 100')
+      i--
+      continue
+    }
+  }
+  console.log(maxNum)  
+</script>
+
+
+
+<!-- 06:整数序列的元素最大跨度值 -->
+<script id="ch0105/06">
+  var num = 0
+  var maxNum = 0
+  var minNum = 0
+  var n = Number(prompt('Enter a number, plesae: '))
+
+  while(n > 1000 || n < 0 || !Number.isInteger(n) || !n){
+    // alert('Tips: 0 <= n <= 1000 ')
+    n = Number(prompt('Enter a number, plesae: '))
+  }
+
+  for (var i = 0; i < n; i++) {
+    num = Number(prompt("Num "+ (i + 1) +" :"))
+    if (Number.isInteger(num) && num <= 1000 && num >= 0) {
+      if (i == 0) {
+        maxNum = minNum = num
+      }
+      if (maxNum <= num) {
+        maxNum = num
+      }else if (minNum >= num) {
+        minNum = num
+      }
+      // console.log(num)
+    }else{
+      // alert(' Tips: input int type  &  0 <= num <= 1000')
+      i--
+      continue
+    }
+  }
+  console.log(maxNum - minNum)  
+</script>
+
+
+
+<!-- 07:奥运奖牌计数 -->
+<script id="ch0105/07">
+  var gMedal = sMedal = bMedal = sumGMedal = sumSMedal = sumBMedal = sumMedal = 0
+  var n = Number(prompt('Enter a number, plesae: '))
+
+  while(n > 17 || n < 0 || !Number.isInteger(n) || !n){
+    // alert('Tips: 0 <= n <= 17 ')
+    n = Number(prompt('Enter a number, plesae: '))
+  }
+
+  for (var i = 0; i < n; i++) {
+    gMedal = Number(prompt("gMedal "+ (i + 1) +" :"))
+    sMedal = Number(prompt("sMedal "+ (i + 1) +" :"))
+    bMedal = Number(prompt("bMedal "+ (i + 1) +" :"))
+    if (Number.isInteger(gMedal, sMedal, bMedal) && gMedal >= 0 && sMedal >= 0 && bMedal >= 0) {
+      sumGMedal = sumGMedal + gMedal
+      sumSMedal = sumSMedal + sMedal
+      sumBMedal = sumBMedal + bMedal
+      // console.log(gMedal)
+      // console.log(sMedal)
+      // console.log(bMedal)
+    }else{
+      alert(' Tips: input int type  &  0 <= num ')
+      i--
+      continue
+    }
+  }
+  sumMedal = sumGMedal + sumSMedal + sumBMedal
+  console.log(sumGMedal, sumSMedal, sumBMedal, sumMedal)  
+</script>
+
+
+
+<!-- 08:多边形内角和 -->
+<script id="ch0105/08">
+  var sumAngle = 0
+  var angle = 0
+  var n = Number(prompt('Enter a number: '))
+
+  while(n < 3 || !Number.isInteger(n) || !n){
+    // alert('Tips: n >= 3 & int type')
+    n = Number(prompt('Enter a number: '))
+  }
+  for (var i = 1; i < n; i++) {
+    angle = Number(prompt('Enter a angle' + i + ': '))
+    if (sumAngle + angle >= (n-2)*180 || !Number.isInteger(angle) || !angle) {
+      // alert('enter like this :' + ' 0 <  angle < ' + ((n-2)*180 - sumAngle))
+      i--
+      continue
+    }
+    sumAngle = sumAngle + angle
+    // console.log(sumAngle)
+  }
+  console.log((n-2)*180 - sumAngle)
+</script>
+
+
+
+<!-- 09:奇数求和 -->
+<script id="ch0105/09">
+  var m = Number(prompt('Enter the first Number: '))
+  var n = Number(prompt('Enter the last Number: '))
+  var oNum = 0 
+  var sumONum = 0 
+
+  while (m < 0 || !Number.isInteger(m) || !Number.isInteger(n) || m > n || n > 300){
+    m = Number(prompt('Enter the first Number (m): '))
+    n = Number(prompt('Enter the last Number (n): '))
+  }
+  for (var i = 0; i < (n - m + 1); i++) {
+    if ((m + i) % 2 !== 0) {
+      oNum = m + i
+      sumONum = sumONum + oNum
+      // console.log(oNum)
+    }
+  }
+  console.log(sumONum)
+</script>
+
+
+
+<!-- 10:满足条件的数累加 -->
+<script id="ch0105/10">
+  var sumNum = 0
+  var m = Number(prompt('Enter a Number "m": '))
+  var n = Number(prompt('Enter a Number: "n"'))
+
+  while (m <=0 || m >= n || n >= 1000 || !Number.isInteger(m) || !Number.isInteger(n)) {
+    m = Number(prompt('Enter a Number "m": '))
+    n = Number(prompt('Enter a Number: "n"'))
+  }
+  for (var i = 0; i < (n - m + 1); i++) {
+    if ((m + i) % 17 === 0) {
+      sumNum = sumNum + (m + i)
+      // console.log(m+i)
+    }
+  }
+  console.log(sumNum)
+</script>
+
+
+
+<!-- 11:整数的个数 -->
+<script id="ch0105/11">
+  var sumNum1 = 0
+  var sumNum5 = 0
+  var sumNum10 = 0
+  var num = 0
+  var k = Number(prompt(" Enter a Number 'k' :"))
+
+  while (k <= 1 || k >=100 || !Number.isInteger(k)) {
+    k = Number(prompt(" Enter a Number 'k' :"))
+  }
+  for (var i = 0; i < k; i++) {
+    num = Number(prompt("Enter the N0." + (i + 1)))
+    while (num < 1 || num > 10 || !Number.isInteger(num)) {
+      num = Number(prompt("Enter agagin, the N0." + (i + 1)))
+    }
+    switch (num) {
+      case 1:
+        sumNum1++
+        break
+      case 5:
+        sumNum5++
+        break
+      case 10:
+        sumNum10++
+        break
+      default:
+        break
+    }
+    // console.log(num)
+  }
+  console.log(sumNum1)
+  console.log(sumNum5)
+  console.log(sumNum10)
+</script>
+
+
+
+<!-- 12:与指定数字相同的数的个数 -->
+<script id="ch0105/12">
+  var sumSameNum = 0
+  var num = 0
+  var n = Number(prompt('Enter the length: '))
+  var m = Number(prompt('Enter the standard No. '))
+
+  while ( n > 100 || !Number.isInteger(n) || !Number.isInteger(m)) {
+    n = Number(prompt('Enter the length: '))
+    m = Number(prompt('Enter the standard No. '))
+  }
+  for (var i = 0; i < n; i++) {
+    num = Number(prompt('Enter the No.' + (i + 1)))
+    while(!Number.isInteger(num)){
+      num = Number(prompt('Enter the No.' + (i + 1)))
+    }
+    if (num === m) {
+      sumSameNum++
+      // console.log(num)
+    }
+  }
+  console.log(sumSameNum)
+</script>
+
+
+
+<!-- 13:乘方计算 -->
+<script id="ch0105/13">
+  var powerNum = 1
+  var a = Number(prompt('Enter the No. "a": '))
+  var n = Number(prompt('Enter the No. "n": '))
+  while (a < -1000000 || a > 1000000 || !Number.isInteger(a) || n < 1 || n > 1000000 || !Number.isInteger(n)) {
+    a = Number(prompt('Enter the No. "a": '))
+    n = Number(prompt('Enter the No. "n": '))
+  }
+  for (var i = 0; i < n; i++) {
+    powerNum = powerNum * a
+  }
+  console.log(powerNum)
+</script>
+
+
+
+<!-- 14:人口增长问题 -->
+<script id="ch0105/14">
+  var sumHNum = 1
+  var rate = 1
+  var x = Number(prompt('Enter the "x" No. '))
+  var n = Number(prompt('Enter the "n" No. '))
+  while (x < 1 || x > 100 || !Number.isInteger(x) || n < 1 || n > 100 || !Number.isInteger(n)) {
+    x = Number(prompt('Enter the "x" No. '))
+    n = Number(prompt('Enter the "n" No. '))
+  }
+  for (var i = 0; i < n; i++) {
+    rate = rate * (0.001 + 1)
+  }
+  sumNum = x * rate
+  console.log(sumNum.toFixed(4))
+</script>
+
+
+
+<!-- 15:银行利息 -->
+<script id="ch0105/15">
+  var totalMoney = 0
+  var cRate = 1
+  var r = Number(prompt('Enter the rate: '))
+  var m = Number(prompt('Enter the money: '))
+  var y = Number(prompt('Enter the year: '))
+
+  while (r > 20 || r < 0 || !Number.isInteger(r) || m > 1000000 || m < 100 || !Number.isInteger(m) || y > 400 || y < 0 || !Number.isInteger(y)) {
+    r = Number(prompt('Enter the rate: '))
+    m = Number(prompt('Enter the money: '))
+    y = Number(prompt('Enter the year: '))
+  }
+  for (var i = 0; i < y; i++) {
+    cRate = cRate * (r * 0.01 + 1)
+    // console.log(cRate)
+  }
+  totalMoney = parseInt(m * cRate)
+  console.log(totalMoney)
+</script>
+
+
+
+<!-- 16:买房子 -->
+<script id="ch0105/16">
+  var saving = 0
+  var hRate =1
+  var hPrice =0
+  var n = Number(prompt('Enter the n :'))
+  var k = Number(prompt('Enter the k :'))
+
+  for (var i = 0; i < 20; i++) {
+    if (i === 0) {
+      saving = 0
+      hRate = 1/(k * 0.01 + 1)
+    }
+    saving = saving + n
+    hRate = hRate * (k * 0.01 + 1)
+    hPrice = 200 * hRate
+    if (saving >= hPrice) {
+      console.log(i+1)
+      break
+    }else if (saving < hPrice && i ===19) {
+      console.log("Impossible")
+    }
+    // console.log(saving)
+    // console.log(hPrice)
+  }
+</script>
+
+
+
+<!-- 17:菲波那契数列 -->
+<script id="ch0105/17">
+  var s = 0
+  var n = Number(prompt('Enter the n:'))
+
+  function feibo(n) {
+    if (n == 1) {
+      // console.log(1)
+      return 1
+    }else if (n == 2) {
+      // console.log(1)
+      return 1
+    }else{
+      s = feibo(n-2) + feibo(n-1)
+      return s
+    }
+    // console.log(s)
+  }
+
+  feibo(n)
+</script>
+
+
+
+<!-- 18:鸡尾酒疗法 -->
+<script id="ch0105/18">
+  var n = Number(prompt('Enter the n: '))
+  var sCocktail = Number(prompt('Enter the sCocktail:'))
+  var yCocktail = Number(prompt('Enter the yCocktail:'))
+  var sample = 0
+  var pass = 0
+  var limit = 0
+  for (var i = 0; i < n - 1; i++) {
+    sample = Number(prompt('Enter the sample:'))
+    pass = Number(prompt('Enter the pass:'))
+    limit = (yCocktail / sCocktail) - (pass / sample)
+    if (limit > 0.05) {
+      console.log('worse')
+    }else if (limit < -0.05) {
+      console.log('better')
+    }else{
+      console.log('same')
+    }
+  }
+</script>
+
+
+<!-- 19:救援 -->
+<script id="ch0105/19">
+  var n = Number(prompt("Enter the n : "))
+  var x = 0
+  var y = 0
+  var z = 0
+  var sumTime = 0
+  for (var i = 0; i < n; i++) {
+    x = Number(prompt("Enter the x :"))
+    y = Number(prompt("Enter the y :"))
+    z = Number(prompt("Enter the z :"))
+    s = 2 * Math.sqrt(x * x + y * y)
+    sumTime = sumTime + (s / 50 + 1.5 * z)
+  }
+  console.log(Math.ceil(sumTime))
+</script>
+
+
+
+<!-- 20:球弹跳高度的计算 -->
+<script id="ch0105/20">
+  var s = 0 
+  var h10 = 0
+  var rate = 1
+  var h = Number(prompt('Enter the h : '))
+
+  for (var i = 0; i < 10; i++) {
+    rate = rate * 0.5
+    h10 = h * rate
+    if (i < 9) {
+      s = s + h10 * 2
+    }
+  }
+  console.log(s + h)
+  console.log(h10)
+</script>
+
+
+
+
+
+
+
+
+<!-- 要点归纳： 判断 input 是否符合要求时，应用句式 -->
+<!-- <script>
+  n = Number(prompt('Enter a Number: '))
+
+  // 方法一 (适用更广)
+  // 输入错误时，一直while循环
+  while( 输入错误时的条件 ){   //如 counter < 0  || !Number.isInteger(counter) 
+    alert = ('请按要求输入：1 <= counter <= 100 && int type ')
+    n = Number(prompt('Enter a Number: '))
+  }
+  // 上面输入正确时 ，进行以下正常语句
+  // balabal...
+
+
+  // 方法二 （仅适用循环语句）
+  for(var i = 0; i < n ; i++){
+    // 以下if else内容条件可以互换，即 真-假 | 假-真 ，while 则不可互换
+    if( 输入正确时的条件 ){
+      // 正确时：正常语句
+      // balabala...
+    }else{
+      //错误时
+      alert('按要求输入： .....')
+      i--
+      continue
+    }
+  }
+
+  // 总结：
+  // while ： 
+  //   优点：适用任何语句环境
+  //   缺点：仅仅能设定否定状态时（若否定状态复杂就麻烦了。。）
+  // if else：
+  //   优点：条件真假可切换顺序（可选简单的条件写，其他为else）
+  //   缺点：仅适用循环语句
+</script> -->
+
