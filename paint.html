@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas width="400" height="300"></canvas>
+</body>
+<script>
+  var cvs = document.querySelector('canvas')
+  var ctx = cvs.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+</script>
+<script>
+  var db = 0
+  var tb = 0
+  var vColor = 0
+  var circleX = 0
+  var circleY = 0
+
+  // 实线
+  for (var i = 0; i < 400; i++) {
+    dot(i, 10 )
+  }
+  for (var i = 0; i < 400; i++) {
+    if (i % 2 === 0) {
+      dot(i, 20 )
+    }
+  }
+  // 2-2虚线
+  for (var i = 0; i < 400; i++) {
+    for (var j = 1; j < 3; j++) {
+      db = j + (i - 1) * 4
+      dot(db, 30)
+    }
+  }
+  // 3-2虚线
+  for (var i = 0; i < 400; i++) {
+    for (var j = 1; j < 4; j++) {
+      tb = j + (i - 1) * 5
+      dot(tb, 40)
+    }
+  }
+  // 45°斜线
+  for (var i = 0; i < 400; i++) {
+    dot(i, i)
+  }
+  // 对角线
+  for (var i = 0; i < 400; i++) {
+    dot(i, (0.75 * i))
+  }
+  //实心矩形
+  for (var i = 180; i < 220; i++) {
+    for (var j = 180; j < 220; j++) {
+      dot(i, j)
+    }
+  }
+  //rgb 色彩空间
+  for (var i = 220; i < 260; i++) {
+    for (var j = 220; j < 260; j++) {
+      vColor = 'rgb(255, ' + 6 * (260 - i) + ',' + 6 * (j - 220) + ")"
+      dot(i, j, vColor)
+    }
+  }
+  //空心圆
+  //取 (x,y) <==> (110, 110) 距离固定为 50 ，即成一个圆
+  // 方程： (y - 110)^2 + (x - 110)^2 = 50^2 
+  // x 取值范围为:   60 <= x <= 160
+  //精度不够
+  for (var i = 60; i < 161; i ++ ) {
+    circleX = i
+    circleYU =  110 - Math.sqrt(100 - (i - 110) * (i - 110))
+    circleYD = Math.sqrt(100 - (i - 110) * (i - 110)) + 110
+    dot(circleX,circleYU)
+    dot(circleX,circleYD)
+  }
+
+  //用cos & sin
+  for (var i = 0; i < 361; i++) {
+    circleX = Math.cos(i) * 50 + 110
+    circleY = Math.sin(i) * 50 + 110
+    dot(circleX,circleY)
+  }
+</script>
+</html>
