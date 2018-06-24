@@ -25,10 +25,9 @@
   var a = Number(prompt('Enter the a:'))
   var b = Number(prompt('Enter the b:'))
   var c = Number(prompt('Enter the c:'))
-  while(c === 0){
-    c = Number(prompt('Enter the c:'))
-  }
-  console.log(( a + b ) / c)
+  var n = 0
+  n = Math.floor(( a + b ) / c)
+  console.log(n)
 </script>
 
 
@@ -41,7 +40,8 @@
 
   c = a % b
   d = parseInt(a / b)
-  console.log(d, c)
+  console.log(d)
+  console.log(c)
 </script>
 
 
@@ -99,9 +99,11 @@
   var r = Number(prompt('Enter the r:'))
 
   d = (r * 2).toFixed(4)
-  l = (d * Math.PI).toFixed(4)
+  l = Math.floor((d * Math.PI) * 10000) / 10000
   s = (r * r * Math.PI).toFixed(4)
-  console.log(d,l,s)
+  console.log(d)
+  console.log(l)
+  console.log(s)
 </script>
 
 
@@ -122,7 +124,7 @@
   var a = Number(prompt('Enter the a:'))
   var b = Number(prompt('Enter the b:'))
 
-  r = a % b
+  r = (a % b).toFixed(4)
   console.log(r)
 </script>
 
@@ -209,9 +211,6 @@
   b = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3))
   c = Math.sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2))
   hl = (a + b + c) / 2
-  console.log(a)
-  console.log(b)
-  console.log(c)
   s = (Math.sqrt(hl * (hl -a)* (hl -b)* (hl -c))).toFixed(2)
   console.log(s)
 </script>
@@ -722,7 +721,7 @@
       continue
     }
   }
-  console.log('$' + avgNum)  
+  console.log(avgNum)  
 </script>
 
 
@@ -751,7 +750,8 @@
       continue
     }
   }
-  console.log(sumNum, avgNum)  
+  console.log(sumNum)  
+  console.log(avgNum)  
 </script>
 
 
@@ -801,7 +801,7 @@
   for (var i = 0; i < n; i++) {
     num = Number(prompt("Num "+ (i + 1) +" :"))
     if (Number.isInteger(num) && num <= 1000 && num >= 0) {
-      if (i0) {
+      if (i === 0) {
         maxNum = minNum = num
       }
       if (maxNum <= num) {
@@ -849,7 +849,10 @@
     }
   }
   sumMedal = sumGMedal + sumSMedal + sumBMedal
-  console.log(sumGMedal, sumSMedal, sumBMedal, sumMedal)  
+  console.log(sumGMedal )  
+  console.log( sumSMedal )  
+  console.log( sumBMedal )  
+  console.log( sumMedal)  
 </script>
 
 
@@ -1076,9 +1079,11 @@
 
 
 <!-- 17:菲波那契数列 -->
+<!-- 不能用函数，不能用递归？？？？ -->
 <script id="ch0105/17">
   var s = 0
   var n = Number(prompt('Enter the n:'))
+  feibo(n)
 
   function feibo(n) {
     if (n == 1) {
@@ -1094,7 +1099,6 @@
     // console.log(s)
   }
 
-  feibo(n)
 </script>
 
 
@@ -1155,8 +1159,8 @@
       s = s + h10 * 2
     }
   }
-  console.log(s + h)
-  console.log(h10)
+  console.log((s + h).toFixed(4))
+  console.log(h10.toFixed(7))
 </script>
 
 
