@@ -175,6 +175,11 @@
   var x = Number(prompt('Enter the x:'))
   var y = Number(prompt('Enter the y:'))
 
+  while(y > n * x){
+    n = Number(prompt('Enter the n agagin:'))
+    x = Number(prompt('Enter the x agagin:'))
+    y = Number(prompt('Enter the y agagin:'))
+  }
   remain = Math.floor(n - y / x)
   console.log(remain)
 </script>
