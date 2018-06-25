@@ -79,13 +79,13 @@
   // 方程： (y - 110)^2 + (x - 110)^2 = 50^2 
   // x 取值范围为:   60 <= x <= 160
   //精度不够
-  for (var i = 60; i < 161; i ++ ) {
-    circleX = i
-    circleYU =  110 - Math.sqrt(100 - (i - 110) * (i - 110))
-    circleYD = Math.sqrt(100 - (i - 110) * (i - 110)) + 110
-    dot(circleX,circleYU)
-    dot(circleX,circleYD)
-  }
+  // for (var i = 60; i < 161; i ++ ) {
+  //   circleX = i
+  //   circleYU =  110 - Math.sqrt(100 - (i - 110) * (i - 110))
+  //   circleYD = Math.sqrt(100 - (i - 110) * (i - 110)) + 110
+  //   dot(circleX,circleYU)
+  //   dot(circleX,circleYD)
+  // }
 
   //用cos & sin
   for (var i = 0; i < 361; i++) {
@@ -93,5 +93,14 @@
     circleY = Math.sin(i) * 50 + 110
     dot(circleX,circleY)
   }
+
+    // 正弦曲线
+
+  for (var i = 0; i < 400; i+= .1) {
+    y = 50 * Math.sin(-10 * i * Math.PI/360) + 150
+    // console.log(Math.sin(i))
+    dot(i, y, '#f0f')
+  }
+
 </script>
 </html>
