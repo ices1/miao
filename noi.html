@@ -1164,6 +1164,12 @@
   console.log(h10.toFixed(7))
 </script>
 
+
+
+
+
+
+
 <!-- 输入三个数，把此三个数按升序输出 -->
 <script id="sort" sample-input="4 1 7" sample-output="1 4 7" comment="输入三个数，把此三个数按升序输出">
   var min = Infinity
@@ -1447,62 +1453,106 @@
     if (s == 1) {
       console.log(n)
     }
-  }
-  
+  } 
 </script>
 
 
 
 <!-- 数字转换成字符串 -->
 <script id="itob" sample-input="123" sample-output="123" comment="数字转换成字符串">
-  
+  debugger
+  var n = 123
+  var digit
+  var result = ''
+
+  do {
+    digit = n % 10
+    result = String.fromCharCode(digit + 48) + result
+    n = (n - digit) / 10
+  }while(n > 0) 
+
+  console.log(result)
 </script>
 
 
 
 <!-- 给定两个数，求它们的最小公倍数和最大公约数 -->
 <script id="lcf&lcm" sample-input="12 9" sample-output="36 3" comment="给定两个数，求它们的最小公倍数和最大公约数">
-  var m = +prompt()
-  var n = +prompt() 
-  var bm = Infinity
-  var subm = -Infinity
-
-  gnum = Math.max(m, n)
-  lnum = Math.min(m, n)
-  for (var i = 1; i <= gnum; i++) {
-    bm = lnum * i
-    if (bm % gnum == 0) {
-      console.log(bm)
+  
+  var m = 12
+  var n = 9
+  var min = m > n ? n:m
+  var max = m > n ? m:n
+  // 最小公倍数
+  for (var i = max;i <= m*n; i++) {
+    if (i % m == 0 && i % n == 0) {
+      console.log(i)
+      break
+    }
+  }
+  // 最小公约数
+  for (var i = min; i > 0; i--) {
+    if (m % i == n % i) {
+      console.log(i)
       break
     }
   }
 
-  for (var i = 1; i <= gnum; i++) {
-    if (gnum % i == 0) {
-      for (var j = 0; j <= lnum; j++) {
-        if (lnum % j == 0) {
-          if (i == j) {
-            subm = Math.max(subm, i)
-          }
-        }
-      }
-    }
-  }
-  console.log(subm)
+  //方法麻烦、弃之
+  // var m = +prompt()
+  // var n = +prompt() 
+  // var bm = Infinity
+  // var subm = -Infinity
+  // gnum = Math.max(m, n)
+  // lnum = Math.min(m, n)
+  // for (var i = 1; i <= gnum; i++) {
+  //   bm = lnum * i
+  //   if (bm % gnum == 0) {
+  //     console.log(bm)
+  //     break
+  //   }
+  // }
+  // for (var i = 1; i <= gnum; i++) {
+  //   if (gnum % i == 0) {
+  //     for (var j = 0; j <= lnum; j++) {
+  //       if (lnum % j == 0) {
+  //         if (i == j) {
+  //           subm = Math.max(subm, i)
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+  // console.log(subm)
 </script>
 
 
 
 <!-- 敲7 -->
 <script id="7" sample-input="" sample-output="" comment="敲7">
-  for (var i = 1; i < 100; i++) {
+  var n = +prompt()
+  var digit = 0
+  var m = n
+  // var knocked = false //flag
+
+  for (var i = 1; i <= n; i++) {
+    knocked = false
     if (i % 7 == 0) {
       console.log(i)
-    }else if (i % 10 == 7) {
-      console.log(i)
-    }else if (i < 80 & i > 70){
-      console.log(i)
+      // knocked = true
+    } else {
+      while (m > 0) {
+        digit = m % 10
+        if (digit == 7) {
+          console.log(i)
+          // knocked = true
+        }
+        m = (m - digit) / 10
+      }
     }
+    // if (!knocked) {
+      // console.log(i)
+    // }
   }
 </script>
 
@@ -1510,18 +1560,29 @@
 
 <!-- 不使用Math不使用Math.sqrt，求一个非负数的平方根，至少精确到小数点后3位 -->
 <script id="sqrt" sample-input="2" sample-output="1.414" comment="不使用Math.sqrt，求一个非负数的平方根，至少精确到小数点后3位">
-  var x = +prompt()
-  // console.log('Math.sqrt: ',Math.sqrt(x).toFixed(3))
 
-  for (var i = 0; i < Infinity; i += 0.0001) {
-    if ( x == (i ** 2).toFixed(3)) {
-      console.log(i.toFixed(3))
-      // console.log('(i ** 2): ',(i ** 2) )
-      break
-    }
+  // 牛顿-拉弗森方法
+  // f(x) = x^2 + n
+  var n = +prompt()
+  var x = n
+
+  var count = 0
+  while(Math.abs(x * x - n) > 0.0000001) {
+    count++
+    x = (n + x**2) / (2 * x)
   }
+  console.log(x.toFixed(3))
+  // console.log(Math.sqrt(n))
 
-  
+
+  // 累死累活法
+  // var x = +prompt()
+  // for (var i = 0; i < Infinity; i += 0.0001) {
+  //   if ( x == (i ** 2).toFixed(3)) {
+  //     console.log(i.toFixed(3))
+  //     break
+  //   }
+  // }
 </script>
 
 
@@ -1529,8 +1590,11 @@
 
 
 
-<!-- 要点归纳： 判断 input 是否符合要求时，应用句式 -->
+<!-- 要点归纳： -->
 <!-- <script>
+
+  1. 
+  //判断 input 是否符合要求时，应用句式
   n = Number(prompt('Enter a Number: '))
 
   // 方法一 (适用更广)
@@ -1564,5 +1628,13 @@
   // if else：
   //   优点：条件真假可切换顺序（可选简单的条件写，其他为else）
   //   缺点：仅适用循环语句
+  
+  2.
+  //取最小值 （当 m > n 时, 赋值n, 否则为 m）
+  var min = m > n ? n:m
+
+
+
+
 </script> -->
 
