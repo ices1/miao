@@ -1227,20 +1227,12 @@
       for (var b = 0; b < 10; b++) {
         for (var c = 0; c < 10; c++) {
           for (var d = 0; d < 10; d++) {
-            for (var e = 0; e < 10; e++) {
-
-              n = a * (10 ** (i - 1)) + b * (10 ** (i - 2)) + c * (10 ** (i - 3)) + d * (10 ** (i - 4)) + e
-              if (i === 3) {
-                d = 0
-                e = 0
-              }
-              if (i === 4) {
-                e = 0
-              }
-              if (a ** i + b ** i + c ** i + d ** i + e ** i ===  n) {
-                console.log(n)
-              }
-
+            n = a * (10 ** (i - 1)) + b * (10 ** (i - 2)) + c * (10 ** (i - 3)) + d * (10 ** (i - 4)) + e
+            if (i === 3) {
+              d = 0
+            }
+            if (a ** i + b ** i + c ** i + d ** i + e ** i ===  n) {
+              console.log(n)
             }
           }
         }
