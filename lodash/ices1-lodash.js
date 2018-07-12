@@ -1,4 +1,4 @@
-window['ices1'] = {
+let ices1 = {
 
   chunk: function(array, size = 1) {
     let len = array.length
