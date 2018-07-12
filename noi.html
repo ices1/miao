@@ -1368,7 +1368,6 @@
       console.log('7')
       break
   }
-
 </script>
 
 
@@ -1576,6 +1575,65 @@
   //   }
   // }
 </script>
+
+
+<!-- 题目：分解质因数，把一个数分解为若干质数的乘积： -->
+<script>
+  var yus = function(a) {
+    for(var i = 2; i <= a; i++) {
+        if(a % i == 0) {
+          return i
+        }
+    }
+  }
+
+  var yings = function (n) {
+      var a = n
+      var s = ''
+      var y 
+      do{
+          y = yus(a)
+          s = s + y + ' * '
+          a = a / y
+      }while(a>1)
+      s= n + ' = ' + s.slice(0,-3)
+      return console.log(s)
+
+  }
+
+  // yings(1260)
+</script>
+
+<!-- 题目：将一个数字的各位加起来求和。如果该和大于10，将得到这个数字继续进行这种操作，直到其只有一位数。
+例如：459->4+6+9->19->1+9->10->1+0->1 于是就输出1 -->
+<script>
+  var sum
+  var v
+  var digit = 0
+  var he = function(n) {
+      sum = 0
+      v = n
+      for (var i = 0; i < n; i++) {
+          digit = v % 10
+          sum = sum + digit
+          v = (v - digit) / 10
+          if (v == 0) {
+              break
+          }
+      }
+      if (sum > 9) {
+          he(sum)
+      }
+      return sum
+  }
+  // he(459)
+</script>
+
+<!-- 题目：找出最小的能被1到20所有数整除的数。 -->
+<script>
+  
+</script>
+
 
 
 
