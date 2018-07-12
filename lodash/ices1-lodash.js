@@ -1,5 +1,12 @@
 let ices1 = {
 
+  /** 
+   _.chunk(['a', 'b', 'c', 'd'], 2);
+  // => [['a', 'b'], ['c', 'd']]
+   
+  _.chunk(['a', 'b', 'c', 'd'], 3);
+  // => [['a', 'b', 'c'], ['d']]
+  **/
   chunk: function(array, size = 1) {
     let len = array.length
     let arr = []
@@ -11,8 +18,12 @@ let ices1 = {
       }
 
       return arr
-    }
+    },
 
+  /*
+  _.compact([0, 1, false, 2, '', 3]);
+  // => [1, 2, 3]
+  */
   compact: function(array) {
     let len = array.length
 
@@ -26,8 +37,17 @@ let ices1 = {
     }
 
     return array
-  }
-
+  },
+  /*
+  var array = [1];
+  var other = _.concat(array, 2, [3], [[4]]);
+   
+  console.log(other);
+  // => [1, 2, 3, [4]]
+   
+  console.log(array);
+  // => [1]
+  */
   concat: function (array) {
     let len = arguments.length
     let arr = []
@@ -39,8 +59,11 @@ let ices1 = {
     }
 
     return arr
-  }
-
+  },
+  /*
+  _.difference([3, 2, 1], [4, 2]);
+  // => [3, 1]
+  */
   difference: function (array, arrFit = []) {
     let len = array.length
     let lenFit = arrFit.length
@@ -55,7 +78,7 @@ let ices1 = {
     }
 
     return arr
-  }
+  },
 
 
 
