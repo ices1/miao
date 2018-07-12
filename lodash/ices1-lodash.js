@@ -1,4 +1,4 @@
-let ices1 = {
+var ices1 = {
 
   /** 
    _.chunk(['a', 'b', 'c', 'd'], 2);
