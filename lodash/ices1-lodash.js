@@ -1,12 +1,7 @@
 var ices1 = {
 
-  /** 
-   _.chunk(['a', 'b', 'c', 'd'], 2);
+  //_.chunk(['a', 'b', 'c', 'd'], 2);
   // => [['a', 'b'], ['c', 'd']]
-   
-  _.chunk(['a', 'b', 'c', 'd'], 3);
-  // => [['a', 'b', 'c'], ['d']]
-  **/
   chunk: function(array, size = 1) {
     let len = array.length
     let arr = []
@@ -20,10 +15,9 @@ var ices1 = {
       return arr
     },
 
-  /*
-  _.compact([0, 1, false, 2, '', 3]);
+  
+  //_.compact([0, 1, false, 2, '', 3]);
   // => [1, 2, 3]
-  */
   compact: function(array) {
     let len = array.length
 
@@ -38,24 +32,21 @@ var ices1 = {
 
     return array
   },
-  /*
-  var array = [1];
-  var other = _.concat(array, 2, [3], [[4]]);
-   
-  console.log(other);
+
+  
+  // var array = [1];
+  // var other = _.concat(array, 2, [3], [[4]]);
   // => [1, 2, 3, [4]]
-   
-  console.log(array);
-  // => [1]
-  */
   concat: function (array) {
     let len = arguments.length
     let arr = []
 
-    arr.push(...array)
-
-    for (let i = 1; i < len; i++) {
-      arr.push(arguments[i])
+    for (let i = 0; i < len; i++) {
+      if(typeof(arguments[i]) == 'object') {
+        arr.push(...arguments[i])
+      } else {
+        arr.push(arguments[i])
+      }
     }
 
     return arr
@@ -77,6 +68,11 @@ var ices1 = {
       }
     }
 
+
+    for (var i = 2; i < arguments.length; i++) {
+      arr = difference(arr, arguments[i])
+    }
+
     return arr
   },
 
@@ -84,7 +80,22 @@ var ices1 = {
 
 
 
+  // 创建一个只能传一个参数的函数
+  // _.map(['6', '8', '10'], _.unary(parseInt));
+  // => [6, 8, 10]  
+  unary: function (func) {
+    return function(val) {
+      return func(val)
+    }
+  }
 
-
+  // 传入值结果取反
+  // _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+  // => [1, 3, 5]
+  negate: function(f) {
+    return function (...args) {
+      return !f(...args)
+    }
+  }
 
 }
