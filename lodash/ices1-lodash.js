@@ -86,6 +86,8 @@ var ices1 = {
     for (var i = len - n; i >= 0; i--) {
       res.unshift(ary[i])
     }
+
+    return res
   },
 
   //数组 内容 填充
