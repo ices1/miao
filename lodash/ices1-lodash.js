@@ -59,11 +59,76 @@ var ices1 = {
     }
 
     for (var i = 2; i < arguments.length; i++) {
-      arr = difference(arr, arguments[i])
+      arr = ices1.difference(arr, arguments[i])
     }
 
     return arr
   },
+
+  //截选 ary 第 n 后几个元素
+  drop: (ary, n = 1)=> {
+    let res = []
+
+    n = n < 0 ? 0 : n
+    for (var i = n; i < ary.length; i++) {
+      res.push(ary[i])
+    }
+
+    return res
+  },
+
+  //截选 ary 倒数第 n 前几个
+  dropRight: (ary, n = 1) => {
+    let res = []
+    let len = ary.length - 1
+
+    n = n < 1 ? 0 : n
+    for (var i = len - n; i >= 0; i--) {
+      res.unshift(ary[i])
+    }
+  },
+
+  //数组 内容 填充
+  fill: (ary, val, start = 0, end = ary.length) => {
+
+    end = end > ary.length ? ary.length : end
+    for (var i = start; i < end; i++) {
+      ary[i] = val
+    }
+
+    return ary
+  },
+
+  //ary 转 val 一层
+  flatten: (ary) => {
+    let res = []
+    let len = ary.length
+
+    for (var i = 0; i < len; i++) {
+      if(typeof(ary[i]) == 'object') {
+        res.push(...ary[i])
+      } else {
+        res.push(ary[i])
+      }
+    }
+
+    return res
+  }
+
+  //字符串转数字
+  parseInt: str => +str | 0 ,
+
+  //重复字符串
+  repeat: function(string = '', n = 1) {
+    let s = ''
+
+    for(let i = 0; i < n; i++) {
+      s += string
+    }
+
+    return s
+  },
+
 
   // 创建一个只能传一个参数的函数
   unary: function (func) {
@@ -72,11 +137,19 @@ var ices1 = {
     }
   },
 
+
+
   // 传入值结果取反
   negate: function(f) {
     return function (...args) {
       return !f(...args)
     }
   },
+
+
+
+
+
+
 
 }
