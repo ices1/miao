@@ -113,7 +113,7 @@ var ices1 = {
     }
 
     return res
-  }
+  },
 
   //字符串转数字
   parseInt: str => +str | 0 ,
