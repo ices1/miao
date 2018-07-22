@@ -1,7 +1,7 @@
-var ices1 = {
+var ices1 = function() {
 
   // 均分数组
-  chunk: function (array, size = 1) {
+  let chunk = (array, size = 1) => {
     let len = array.length
     let arr = []
 
@@ -12,10 +12,10 @@ var ices1 = {
     }
 
     return arr
-  },
+  }
 
   //去除false、 null、 NaN 等特定值
-  compact: function (array) {
+  let compact = array => {
     let len = array.length
 
     for (let i = 0; i < len; i++) {
@@ -28,10 +28,10 @@ var ices1 = {
     }
 
     return array
-  },
+  }
 
   //连接数组
-  concat: function (array) {
+  let concat = array => {
     let len = arguments.length
     let arr = []
 
@@ -44,10 +44,10 @@ var ices1 = {
     }
 
     return arr
-  },
+  }
 
   //根据后面数组，移除与前 array 中相同项
-  difference: function (array, arrFit = []) {
+  let difference = (array, arrFit = []) => {
     let len = array.length
     let lenFit = arrFit.length
     var arr = []
@@ -63,10 +63,10 @@ var ices1 = {
     }
 
     return arr
-  },
+  }
 
   //截选 ary 第 n 后几个元素
-  drop: (ary, n = 1) => {
+  let drop = (ary, n = 1) => {
     let res = []
 
     n = n < 0 ? 0 : n
@@ -75,10 +75,10 @@ var ices1 = {
     }
 
     return res
-  },
+  }
 
   //截选 ary 倒数第 n 前几个
-  dropRight: (ary, n = 1) => {
+  let dropRight = (ary, n = 1) => {
     let res = []
     let len = ary.length - 1
 
@@ -88,10 +88,10 @@ var ices1 = {
     }
 
     return res
-  },
+  }
 
   //数组 内容 填充
-  fill: (ary, val, start = 0, end = ary.length) => {
+  let fill = (ary, val, start = 0, end = ary.length) => {
 
     end = end > ary.length ? ary.length : end
     for (var i = start; i < end; i++) {
@@ -99,10 +99,10 @@ var ices1 = {
     }
 
     return ary
-  },
+  }
 
   //ary 转 val 一层
-  flatten: (ary) => {
+  let flatten = ary => {
     let res = []
     let len = ary.length
 
@@ -115,10 +115,10 @@ var ices1 = {
     }
 
     return res
-  },
+  }
 
   //数组深度拆分
-  flattenDeep: ary => {
+  let flattenDeep = ary => {
     var result = []
 
     for (var i = 0; i < ary.length; i++) {
@@ -131,10 +131,10 @@ var ices1 = {
     }
 
     return result
-  },
+  }
 
   //数组深度拆分, 分级拆分
-  flattenDepth: (ary, depth = 1) => {
+  let flattenDepth = (ary, depth = 1) => {
     if (depth === 0) {
       return ary.slice()
     }
@@ -151,10 +151,75 @@ var ices1 = {
     }
 
     return result
-  },
+  }
+  
+  // join: ary -> str
+  let join = (array, separator=',') => {
+    let s = separator
+    let res = ''
+
+    for(let i = 0; i < array.length; i++) {
+      res += array[i]
+    }
+
+    return res
+  }
+
+  // last: get last one
+  let last = ary => ary[ary.length - 1]
+
+  // lastIndexOf: get val index
+  let lastIndexOf = (ary, val, fromIndex = ary.length - 1) => {
+    for(let i = fromIndex; i > -1; i--) {
+      if(ary[i] === val) {
+        return i
+      }
+    }
+
+    return -1
+  }
+
+  // nth: get val by .
+  let nth = (ary, n = 0) => n >= 0 ? ary[n] : ary[ary.length + n]
+  
+  //pull: removes all given values from array
+  let pull = (ary,...args) => {
+    for(let i = 0; i < ary.length; i++) {
+      if(args.includes(ary[i])) {
+        ary.splice(i, 1)
+        i--
+      }
+    }
+
+    return ary
+  }   
+
+  //pullAll: removes all given values from array
+  let pullAll = (ary, rmary) => {
+    for(let i = 0; i < ary.length; i++) {
+      if(rmary.includes(ary[i])) {
+        rmary.splice(i, 1)
+        i--
+      }
+    }
+
+    return ary
+  }  
+
+  //without: removes all given values from array
+  let without = (ary,...args) => {
+    let res = []
+    for(let i = 0; i < ary.length; i++) {
+      if(!args.includes(ary[i])) {
+        res.push(ary[i])
+      }
+    }
+
+    return res
+  }
 
   //数组对 转 对象
-  fromPairs: (args) => {
+  let fromPairs = args => {
     let obj = {}
 
     for (let i = 0; i < args.length; i++) {
@@ -162,13 +227,13 @@ var ices1 = {
     }
 
     return obj
-  },
+  }
 
   //获取 ary 第一个值
-  head: ary => ary[0],
+  let head = ary => ary[0]
 
   //在 ary 寻找 val 
-  indexOf: (ary, val, start = 0) => {
+  let indexOf = (ary, val, start = 0) => {
     for (var i = start; i < ary.length; i++) {
       if (ary[i] === val) {
         return i
@@ -176,13 +241,13 @@ var ices1 = {
     }
 
     return -1
-  },
+  }
 
   //取除 最后一元素外 ary 切片
-  initial: ary => ary.slice(0, ary.length - 1),
+  let initial = ary => ary.slice(0, ary.length - 1)
 
   //求 多个 ary 交集
-  intersection: function (ary) {
+  let intersection = () => {
     let result = []
     let tmp = []
 
@@ -191,29 +256,32 @@ var ices1 = {
     }
 
     for (var i = 0; i < arguments[0].length; i++) {
-      if (!tmp.includes(arguments[0][i])) {
+      if (tmp.includes(arguments[0][i])) {
         result.push(arguments[0][i])
       }
     }
 
     return result
-  },
-
-
-
-
-
-
-
-
+  }
 
 
 
   //字符串转数字
-  parseInt: str => +str | 0,
+  let parseInt = str => {
+    let tmp
+
+    for(let i = 0;i < str.length; i++) {
+      if(+str[i] !== +str[i]) {
+        break
+      }
+      tmp += str[i]
+    }
+
+    return +tmp | 0
+  }
 
   //重复字符串
-  repeat: function (string = '', n = 1) {
+  let repeat = (string = '', n = 1) => {
     let s = ''
 
     for (let i = 0; i < n; i++) {
@@ -221,24 +289,14 @@ var ices1 = {
     }
 
     return s
-  },
+  }
 
 
   // 创建一个只能传一个参数的函数
-  unary: function (func) {
-    return function (val) {
-      return func(val)
-    }
-  },
-
-
+  let unary = func => val => func(val)
 
   // 传入值结果取反
-  negate: function (f) {
-    return function (...args) {
-      return !f(...args)
-    }
-  },
+  let negate = f => (...args) => !f(...args)
 
 
 
@@ -246,4 +304,42 @@ var ices1 = {
 
 
 
-}
+
+
+  return {
+
+    chunk: chunk,
+    compact: compact,
+    concat: concat,
+    difference: difference,
+    drop: drop,
+    dropRight: dropRight,
+    fill: fill,
+    flatten: flatten,
+    flattenDeep: flattenDeep,
+    flattenDepth: flattenDepth,
+    join: join,
+    last: last,
+    lastIndexOf: lastIndexOf,
+    nth: nth,
+    pull: pull,
+    pullAll: pullAll,
+    without: without,
+    fromPairs: fromPairs,
+    head: head,
+    indexOf: indexOf,
+    initial: initial,
+    intersection: intersection,
+    parseInt: parseInt,
+    repeat: repeat,
+    unary: unary,
+    negate:negate,
+    
+  }
+
+
+
+
+
+
+}()
