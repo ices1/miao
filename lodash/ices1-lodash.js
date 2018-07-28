@@ -156,7 +156,7 @@ var ices1 = function() {
     let res = ''
 
     for(let i = 0; i < ary.length; i++) {
-      res += i < ary.length - 1 ? ary[i] + separator : ary[i]
+      res += i < ary.length - 1 ? ary[i] + '' + separator : ary[i]
     }
 
     return res
