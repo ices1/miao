@@ -63,6 +63,51 @@ var ices1 = function() {
     return arr
   }
 
+
+  // 改进 differenceBy
+  let differenceBy = (array, ...args) => {
+    let result = diff = []
+    let iter = null
+
+    if(!Array.isArray(args[args.length - 1])) {
+        iter = args.pop()
+    } 
+    iter = ices1.iteratee(iter)   
+    // 参数归一 
+
+    diff = [].concat(...args).map(iter)
+    result = array.filter(item => !diff.includes(iter(item)))
+
+    return result
+  }
+
+  // 根据 iteratee 移除 array (旧版)
+  function old_DifferenceBy(array, ...args){
+    let iter = args[args.length - 1]
+    if(Array.isArray(iter)) {
+        values = [].concat(...args)
+    } else {
+        values = [].concat(...args)
+        values.pop()
+    }
+    iter = iteratee(iter)   //参数归一
+    let res = []
+    
+    let diff = []
+    for(let j = 0; j < values.length; j++) {
+        diff.push(iter(values[j]))
+    }
+    for(let i = 0; i < array.length; i++) {
+        if(!diff.includes(iter(array[i]))) {
+            res.push(array[i])
+        }
+    }
+
+    return res
+}
+
+
+
   //截选 ary 第 n 后几个元素
   let drop = (ary, n = 1) => {
     let res = []
@@ -332,16 +377,21 @@ var ices1 = function() {
   // 传入值结果取反
   let negate = f => (...args) => !f(...args)
 
+  // sumBy
+  let sumBy = (ary, iter) => ary.reduce((pre, cur) => pre + ices1.iteratee(iter)(cur), 0)
 
 
 
-
-
+  // 辅助 函数
   let iteratee = iter => {
     if(typeof iter === 'function') {
-      return iter
-    } else if (Array.isArray(iter)) {
-      return 
+        return iter
+    } else if (typeof iter === 'string') {
+        return function(obj) {
+            return obj[iter]
+        }
+    } else {
+        return it => it
     }
   }
 
@@ -352,7 +402,7 @@ var ices1 = function() {
     compact: compact,
     concat: concat,
     difference: difference,
-// differenceBy: differenceBy,
+    differenceBy: differenceBy,
 // differenceWith: differenceWith,
     drop: drop,
     dropRight: dropRight,
@@ -394,7 +444,10 @@ var ices1 = function() {
     repeat: repeat,
     unary: unary,
     negate:negate,
-    
+    sumBy: sumBy,
+    // isEqual: isEqual,
+    //辅助函数
+    iteratee: iteratee,
   }
 
 
