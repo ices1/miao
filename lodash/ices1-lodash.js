@@ -343,7 +343,61 @@ var ices1 = function() {
     return result
   }
 
+  //kebabCase
+  let kebabCase = str => {
+    let res = ''
 
+    if(str.match(/\_| /g, '') == null) {
+      for(let i = 0; i < str.length; i++) {
+        if(str[i].charCodeAt() < 97) {
+          res += '-' + str[i].toLowerCase()
+        } else {
+          res += str[i]
+        }
+      }
+    } else {
+      res = str.replace(/^(\_+)|(\_+)$/g, '').replace(/\_+| /g, '-').toLowerCase()
+    }
+
+    return res
+  }
+
+  // lowerCase
+  let lowerCase = str => str.match(/\w+/g).map(x => x.toLowerCase()).join(' ')
+
+  // lowerFirst
+  let lowerFirst = str  => str[0].toLowerCase() + str.slice(1)
+
+  // pad
+  let pad = (str = '', l = 0, chars = ' ') => {
+    let len = str.length
+    if(l <= len || chars == '') return str
+    let head = Math.floor((l - len) / 2)
+    let tail = Math.ceil((l - len) / 2)
+    let s = chars.repeat(Math.ceil(tail / chars.length))
+
+    return s.slice(0, head) + str + s.slice(0, tail)
+  }
+
+  // padEnd
+  let padEnd = (str = '', l = 0, chars = ' ') => {
+    let len = str.length
+    if(l <= len || chars == '') return str
+    let tail = l - len
+    let s = chars.repeat(Math.ceil(tail / chars.length))
+
+    return str + s.slice(0, tail)
+  }
+
+  // padStart
+  let padStart = (str = '', l = 0, chars = ' ') => {
+    let len = str.length
+    if(l <= len || chars == '') return str
+    let head = l - len
+    let s = chars.repeat(Math.ceil(head / chars.length))
+
+    return s.slice(0, head) + str
+  }
 
   //字符串转数字
   let parseInt = str => {
@@ -380,7 +434,7 @@ var ices1 = function() {
   // sumBy
   let sumBy = (ary, iter) => ary.reduce((pre, cur) => pre + ices1.iteratee(iter)(cur), 0)
 
-
+  let uniq = ary => Array.from(new Set(ary))
 
   // 辅助 函数
   let iteratee = iter => {
@@ -437,9 +491,16 @@ var ices1 = function() {
   // sortedIndexBy: sortedIndexBy,
   // sortedIndexOf: sortedIndexOf,
 
-
+    // >_<
+    uniq: uniq,
 
     without: without,
+    kebabCase: kebabCase,
+    lowerCase: lowerCase,
+    lowerFirst: lowerFirst,
+    pad: pad,
+    padEnd: padEnd,
+    padStart: padStart,
     parseInt: parseInt,
     repeat: repeat,
     unary: unary,
