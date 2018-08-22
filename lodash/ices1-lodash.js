@@ -347,7 +347,7 @@ var ices1 = function() {
   let kebabCase = str => {
     let res = ''
 
-    if(str.match(/\_| |　/g, '') == null) {
+    if(str.match(/\_|\ |\	|\　/g) == null) {
       for(let i = 0; i < str.length; i++) {
         if(str[i].charCodeAt() < 97) {
           res += '-' + str[i].toLowerCase()
@@ -356,7 +356,7 @@ var ices1 = function() {
         }
       }
     } else {
-      res = str.replace(/^(\_+)|(\_+)$/g, '').replace(/[\_\ \　]/g, '-').toLowerCase()
+      res = str.replace(/^(\_+)|(\_+)$/g, '').replace(/[\_\ \　\	]/g, '-').toLowerCase()
     }
 
     return res
