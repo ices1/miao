@@ -343,6 +343,57 @@ var ices1 = function() {
     return result
   }
 
+  // camelCase
+  let camelCase = str => {
+    str.replace(/^[\_\-]+|[\_\-]+$/g,'')
+    let ary = str.match(/[^_ \-\  \　]+/g,'')
+    let res = ary[0].toLowerCase()
+
+    for(let i = 1; i < ary.length; i++) {
+      res += ary[i][0].toUpperCase() + ary[i].slice(1).toLowerCase
+    }
+    
+    return res
+  }
+
+  // capitalize
+  let capitalize = str => str[0].toUpperCase() + str.slice(1).toLowerCase()
+
+  // endsWith
+  let endsWith = (str, word, idx = str.length) => {
+    return str[idx - 1] == word
+  }
+  // escape
+  let escape = str => {
+    let res = ''
+    let obj = {"&": "&amp;","<": "&lt;",">": "&gt;","'": "&#39;",'"': "&quot;"}
+    for(let i = 0; i < str.length; i++) {
+      if(str[i] in obj) {
+        res += obj[str[i]]
+      } else {
+        res += str[i]
+      }
+    }
+
+    return res
+  }
+
+  // escapeRegExp
+  let escapeRegExp = str => {
+    let ary = ["^", "$", "", ".", "*", "+", "?", "(", ")", "[", "]", "{", "}", "|"]
+    let res = ''
+
+    for(let i = 0; i < str.length; i++) {
+      if(ary.includes(str[i])) {
+        res += '\\' + str[i]
+      }else {
+        res += str[i]
+      }
+    }
+
+    return res
+  }
+
   //kebabCase
   let kebabCase = str => {
     let res = ''
@@ -445,9 +496,6 @@ var ices1 = function() {
   // 传入值结果取反
   let negate = f => (...args) => !f(...args)
 
-  // sumBy
-  let sumBy = (ary, iter) => ary.reduce((pre, cur) => pre + ices1.iteratee(iter)(cur), 0)
-
   let uniq = ary => Array.from(new Set(ary))
 
   // 辅助 函数
@@ -463,6 +511,134 @@ var ices1 = function() {
     }
   }
 
+
+/*------------------Math-----------------------------*/
+
+  // add
+  let add = (x, y) => x + y
+
+  // ceil
+  let ceil = (num, pre = 0) => {
+    if (pre == 0) return Math.ceil(num)
+    if (pre > 0) {
+      let s = num.toFixed(pre)
+      if (s < num) {
+        return +s.slice(0,-1) + +((+s.slice(-1) + 1)* (0.1 ** pre)).toFixed(10)
+      } else {
+        return +s
+      }
+    } else {
+      let pro = 10 ** (-pre)
+      let res = (num / pro | 0) * pro
+      if (res < num) {
+        return res + pro
+      } else {
+        return res
+      }
+    }
+  }
+
+  // divide
+  let divide = (divd, divr) => divd / divr
+
+  // floor
+  let floor = (num, pre = 0) => {
+    if(pre == 0) return num | 0
+    if (pre > 0) {
+      let res = num.toFixed(pre)
+      if(res > num) {
+        return +res - +(0.1 ** pre).toFixed(10)
+      }
+      return +res
+    } else {
+      let pro = 10 ** (-pre)
+      return (num / pro |0 ) * pro
+    }
+  }
+
+  // max
+  let max = ary => ary.length == 0 ? undefined : Math.max(...ary)
+
+  // maxBy
+  let maxBy = function(ary, iter) {
+
+    return ary.reduce((pre, cur) => 
+      (iteratee(iter)(pre) != undefined ? iteratee(iter)(pre) : -Infinity )
+       > (iteratee(iter)(cur) != undefined ? iteratee(iter)(cur) : -Infinity ) ? pre : cur)
+
+    // 高阶代替
+    // let max = -Infinity
+    // let res
+    // iter = iteratee(iter)
+
+    // for(let item of ary) {
+    //   if (iter(item) > max) {
+    //     max = iter(item)
+    //     res = item
+    //   }
+    // }
+
+    // return res
+  }
+
+  // mean
+  let mean = ary => ary.length == 0 ? NaN : ary.reduce((pre, cur) => pre + cur) / ary.length
+
+  // meanBy
+  let meanBy = function(ary, iter) {
+    let store = []
+    iter = iteratee(iter)
+
+    for(let item of ary) {
+      store.push(iter(item) || 0)
+    }
+
+    return mean(store)
+  } 
+
+  // min
+  let min = ary => ary.length == 0 ? undefined : Math.min(...ary)
+
+  // minBy
+  let minBy = function (ary, iter) {
+    return ary.reduce((pre, cur) => 
+    (iteratee(iter)(pre) != undefined ? iteratee(iter)(pre) : Infinity )
+     < (iteratee(iter)(cur) != undefined ? iteratee(iter)(cur) : Infinity ) ? pre : cur)
+
+    // 一般思路
+    // let res
+    // let min = Infinity
+    // for(let item of ary) {
+    //   if (iter(item) < min) {
+    //     min = iter(item)
+    //     res = item
+    //   }
+    // }
+
+    // return res
+  } 
+
+  // multiply
+  let multiply = (mulr, muld) => mulr * muld
+
+  // round
+  let round = (num, pre) => {
+    if (pre < 0) {
+      let res = num / (10 ** (-pre))
+      return +res.toFixed(0) * (10 ** (-pre))
+    } else {
+      return +num.toFixed(pre)
+    }
+  }
+
+  // subtract
+  let subtract = (minu, sub) => minu - sub
+
+  // sum
+  let sum = ary => ary.reduce((pre, cur) => pre + cur, 0)
+
+  // sumBy
+  let sumBy = (ary, iter) => ary.reduce((pre, cur) => pre + iteratee(iter)(cur), 0)
 
   return {
 
@@ -508,7 +684,30 @@ var ices1 = function() {
     // >_<
     uniq: uniq,
 
+    /* ------------Math-------- */
+
+    add: add,
+    ceil: ceil,
+    divide: divide,
+    floor: floor,
+    max: max,
+    maxBy: maxBy,
+    mean: mean,
+    meanBy: meanBy,
+    min: min,
+    minBy: minBy,
+    multiply: multiply,
+    round: round,
+    subtract: subtract,
+    sum: sum,
+    sumBy: sumBy,
+
     without: without,
+    camelCase: camelCase,
+    capitalize: capitalize,
+    endsWith: endsWith,
+    escape: escape,
+    escapeRegExp: escapeRegExp,
     kebabCase: kebabCase,
     lowerCase: lowerCase,
     lowerFirst: lowerFirst,
@@ -519,7 +718,6 @@ var ices1 = function() {
     repeat: repeat,
     unary: unary,
     negate:negate,
-    sumBy: sumBy,
     // isEqual: isEqual,
     //辅助函数
     iteratee: iteratee,
