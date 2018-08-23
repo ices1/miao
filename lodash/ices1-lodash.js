@@ -342,6 +342,8 @@ var ices1 = function() {
 
     return result
   }
+  
+/* ----------------String-------------- */
 
   // camelCase
   let camelCase = str => {
@@ -350,7 +352,7 @@ var ices1 = function() {
     let res = ary[0].toLowerCase()
 
     for(let i = 1; i < ary.length; i++) {
-      res += ary[i][0].toUpperCase() + ary[i].slice(1).toLowerCase
+      res += ary[i][0].toUpperCase() + ary[i].slice(1).toLowerCase()
     }
     
     return res
@@ -489,7 +491,35 @@ var ices1 = function() {
     return s
   }
 
+  // replace
+  let replace = (str, pat, rep) => str.replace(new RegExp(pat), rep)
 
+  // snakeCase
+  let snakeCase = str => formatString(str).map(x => x.toLowerCase()).join('_')
+
+  // split
+  let split = (str,...args) => str.split(...args)
+
+  
+
+  // formatString 辅助函数
+  function formatString(str) {
+    let res = []
+    let idx = 0
+    if (str.match(/\W|\_/g) == null) {
+      for(let i = 0; i < str.length; i++) {
+        if (str[i].charCodeAt() < 97) {
+          res.push(str.slice(idx, i))
+          idx = i
+        }
+      }
+      res.push(str.slice(idx))
+    } else {
+      res = str.split(/[\W\_]/g).filter(x => x)
+    }
+
+    return res
+  }
   // 创建一个只能传一个参数的函数
   let unary = func => val => func(val)
 
@@ -605,7 +635,7 @@ var ices1 = function() {
     (iteratee(iter)(pre) != undefined ? iteratee(iter)(pre) : Infinity )
      < (iteratee(iter)(cur) != undefined ? iteratee(iter)(cur) : Infinity ) ? pre : cur)
 
-    // 一般思路
+    // 高阶代替
     // let res
     // let min = Infinity
     // for(let item of ary) {
@@ -639,6 +669,51 @@ var ices1 = function() {
 
   // sumBy
   let sumBy = (ary, iter) => ary.reduce((pre, cur) => pre + iteratee(iter)(cur), 0)
+
+/* ----------------Number----------------- */
+  // clamp
+  let clamp = (...args) => {
+    if (args.length == 2) {
+      return Math.min(...args)
+    } else {
+      if (args[1] >= args[0]) {
+        return args[1]
+      } else if (args[2] >= args[0]){
+        return args[0]
+      } else {
+        return args[2]
+      }
+    }
+  }
+
+  // inRange
+  let inRange = (...args) => {
+    let a = args.length == 2 ? 0 : args[1]
+    let b = args[args.length - 1]
+
+    return args[0] > Math.min(a, b) && args[0] < Math.max(a, b)
+  }
+
+  // random
+  let random = (...args) => {
+    let calcFloat = (s, e) => Math.random() * (e - s) + s
+    let calcInt = (s, e) => +(Math.random() * (e - s) + s).toFixed(0)
+    let whichOne = (status, min, max) => status ? calcFloat(min, max) : calcInt(min, max)
+
+    if (typeof args[args.length - 1] == 'boolean') {
+      max = args[args.length - 2]
+      min = args[args.length - 3] || 0 
+      
+      return whichOne(args[args.length - 1], min, max)
+    } else {
+      let status = args.some(x => x != (x | 0))
+      max = args[args.length - 1]
+      min = args[args.length - 2] || 0 
+
+      return whichOne(status, min, max)
+    }
+  }
+
 
   return {
 
@@ -685,7 +760,7 @@ var ices1 = function() {
     uniq: uniq,
 
     /* ------------Math-------- */
-
+    
     add: add,
     ceil: ceil,
     divide: divide,
@@ -701,10 +776,20 @@ var ices1 = function() {
     subtract: subtract,
     sum: sum,
     sumBy: sumBy,
-
+    
+    /* ------------Number-------- */
+    
+    clamp: clamp,
+    inRange: inRange,
+    random: random,
+    
     without: without,
+
+    /* ------------String-------- */
+    
     camelCase: camelCase,
     capitalize: capitalize,
+    // deburr
     endsWith: endsWith,
     escape: escape,
     escapeRegExp: escapeRegExp,
@@ -716,11 +801,18 @@ var ices1 = function() {
     padStart: padStart,
     parseInt: parseInt,
     repeat: repeat,
+    replace: replace,
+    snakeCase: snakeCase,
+    split: split,
+
+
+
     unary: unary,
     negate:negate,
     // isEqual: isEqual,
     //辅助函数
     iteratee: iteratee,
+    formatString: formatString,
   }
 
 
