@@ -346,17 +346,21 @@ var ices1 = function() {
 /* ----------------String-------------- */
 
   // camelCase
-  let camelCase = str => {
-    str.replace(/^[\_\-]+|[\_\-]+$/g,'')
-    let ary = str.match(/[^_ \-\  \　]+/g,'')
-    let res = ary[0].toLowerCase()
+  let camelCase = str => formatString(str).reduce((pre, cur) => pre ? pre + cur[0].toUpperCase() + cur.slice(1).toLowerCase(): cur.toLowerCase(),'')
+  // 高阶
+  // let camelCase = str => {
+    // str.replace(/^[\_\-]+|[\_\-]+$/g,'')
+    // let ary = str.match(/[^_ \-\  \　]+/g,'')
+    // let res = ary[0].toLowerCase()
 
-    for(let i = 1; i < ary.length; i++) {
-      res += ary[i][0].toUpperCase() + ary[i].slice(1).toLowerCase()
-    }
+    // for(let i = 1; i < ary.length; i++) {
+    //   res += ary[i][0].toUpperCase() + ary[i].slice(1).toLowerCase()
+    // }
     
-    return res
-  }
+    // return res
+
+
+  // }
 
   // capitalize
   let capitalize = str => str[0].toUpperCase() + str.slice(1).toLowerCase()
@@ -500,7 +504,51 @@ var ices1 = function() {
   // split
   let split = (str,...args) => str.split(...args)
 
-  
+  // startCase
+  let startCase = str => {
+    let ary = formatString(str)
+    if (ary[0].charCodeAt() < 97) return ary.join(' ')
+    let res = ary.map(it => it[0].toUpperCase() + it.slice(1).toLowerCase())
+
+    return res.join(' ')
+  }
+
+  // startsWith
+  let startsWith = (str, start, pos = 0) => str[pos] === start
+
+  // template
+  // let template = (str, opt) => {}
+
+  // toLower
+  let toLower = str => str.toLowerCase()
+
+  // toUpper
+  let toUpper = str => str.toUpperCase()
+
+  // trim
+  let trim = (str, chars = ' ') => {
+    chr = chars >= 0 ? '\\s' : chars.split('').map(x => x == ' ' ? '\\s' : ('\\' + x)).join('')
+    re = new RegExp(`^[${chr}]+|[${chr}]+$`,'g')
+
+    return str.replace(re, '')
+  }
+
+  // trimEnd
+  let trimEnd = (str, chars = ' ') => {
+    chr = chars >= 0 ? '\\s' : chars.split('').map(x => x == ' ' ? '\\s' : ('\\' + x)).join('')
+    re = new RegExp(`[${chr}]+$`,'g')
+
+    return str.replace(re, '')
+  }
+
+  // trimStart
+  let trimStart = (str, chars = ' ') => {
+    chr = chars >= 0 ? '\\s' : chars.split('').map(x => x == ' ' ? '\\s' : ('\\' + x)).join('')
+    re = new RegExp(`^[${chr}]+`,'g')
+
+    return str.replace(re, '')
+  }
+
 
   // formatString 辅助函数
   function formatString(str) {
@@ -804,7 +852,13 @@ var ices1 = function() {
     replace: replace,
     snakeCase: snakeCase,
     split: split,
-
+    startCase: startCase,
+    startsWith: startsWith,
+    toLower: toLower,
+    toUpper: toUpper,
+    trim: trim,
+    trimEnd: trimEnd,
+    trimStart: trimStart,
 
 
     unary: unary,
