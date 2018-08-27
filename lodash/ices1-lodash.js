@@ -549,6 +549,55 @@ var ices1 = function() {
     return str.replace(re, '')
   }
 
+  // truncate
+  let truncate = (str, options = {}) => {
+    let optLen = options.length == undefined ? 30 : options.length
+    let optOmi = options.omission == undefined ? '...' : options.omission
+
+    if (str.length > optLen) {
+      if (options.separator == undefined) {
+        return str.slice(0, optLen - optOmi.length) + optOmi
+      } else {
+        let re = new RegExp(options.separator,'g')
+        let ary = []
+        let myAry 
+        while(myAry = re.exec(str)) { 
+          // ary.push(re.lastIndex)
+	        ary.push(myAry.index)
+        }
+        for (let i = ary.length - 1; i > -1 ; i--) {
+          if(ary[i] + optOmi.length <= optLen) {
+            return str.slice(0, ary[i]) + optOmi
+          }
+        }
+      }
+    } else {
+      return str
+    }
+  }
+
+  // unescape
+  let unescape = str => {
+    let obj = {"&amp;": "&", "&lt;": "<", "&gt;": ">" ,"&#39;": "'","&quot;": '"'}
+    return str.replace(/(\&\w+\;?)/,x => {
+      // console.log(x,typeof x)
+      if(x in obj) {
+        return obj[x]
+      }else{
+        return $1
+      }
+    })
+  }
+
+  // upperCase
+  let upperCase = str => formatString(str).join(' ').toUpperCase()
+
+  // upperFirst
+  let upperFirst = str => 
+    str[0].charCodeAt() > 97 ? str[0].toUpperCase() + str.slice(1) : str
+
+  // words
+  let words = (str = '', pattern = /\w+/g) => str.match(pattern)
 
   // formatString 辅助函数
   function formatString(str) {
@@ -588,6 +637,138 @@ var ices1 = function() {
         return it => it
     }
   }
+
+
+/*------------------Lang-----------------------------*/
+
+  let castArray = val => Array.isArray(val) ? val : [val]
+
+  let clone = val => JSON.parse(JSON.stringify(val))
+  let cloneDeep= val => JSON.parse(JSON.stringify(val))
+
+  // cloneDeepWith
+  // cloneWith
+
+  // conformsTo
+  let conformsTo = (obj, source) => {
+    let key = Object.keys(source)[0]
+    let val = obj[key]
+
+    return source[key](val)
+  }
+
+  // eq 
+  let eq = (val, other) => val === other
+
+  // gt
+  let gt = (val, other) => val > other
+
+  // gte
+  let gte =(val, other) => val >= other
+
+  // isArguments
+  let isArguments = val => val.length >= 0 && !Array.isArray(val)
+
+  // isArray
+  let isArray = val => Array.isArray(val)
+
+  // isArrayBuffer
+  let isArrayBuffer = val => Object.prototype.toString.call(val) == "[object ArrayBuffer]"
+
+  // isArrayLike
+  let isArrayLike = val => {
+    return Array.isArray(val) || (typeof val != 'function' && Array.from(val).length > 0)
+  }
+
+  // isArrayLikeObject
+  let isArrayLikeObject = val => typeof val == 'object'
+
+  // isBoolean
+  let isBoolean = val => typeof val == "boolean"
+
+  // let isBuffer
+
+  // isDate
+  let isDate = val => Object.prototype.toString.call(val) == "[object Date]"
+
+  // isElement
+  let isElement = val => Object.prototype.toString.call(val) == "[object HTMLBodyElement]"
+
+  // isEmpty
+  // let isEmpty = val => 
+
+  // isEqual
+  // let isEqual = val => 
+  
+  // isEqualWith
+  // let isEqualWith = val => 
+
+  // isError
+  let isError = val => Object.prototype.toString.call(val) == "[object Error]"
+
+  // isFinite
+  let isFinite = val => Number.isFinite(val)
+
+  // isFunction
+  let isFunction = val => typeof val == 'function'
+
+  // isInteger
+  let isInteger = val => val === (val|0)
+
+  // isLength
+  let isLength = val => isInteger(val) && val >= 0
+
+  // isMap
+  let isMap = val => Object.prototype.toString.call(val) === "[object Map]"
+
+  // isMatch
+  let isMatch = (obj, source) => isMatchWith(obj, source, (obj, src) => obj === src)
+
+  // isMatchWith
+  let isMatchWith = (obj, source, customizer) => {
+    let key = Object.keys(source)
+
+    if (typeof obj[key] == 'object') {
+      return isMatch(obj[key], source[key])
+    } else if(customizer(obj[key], source[key])) {
+      return true
+    } 
+      return false
+  }
+
+  // isNaN
+  let isNaN = val => val !== val || val instanceof Object ? val.valueOf() !== val.valueOf() : false
+  
+  // isNative
+  let isNative = val => /\[native code\]/.test(val.toString())
+  // let isNative = val => val.toString().match(/\[native code\]/) !== null
+  
+  // isNil
+  let isNil = val => val === null || val === undefined
+
+  // isNull
+  let isNull = val => val === null
+
+  // isNumber
+  let isNumber = val => typeof val === 'number'
+
+  // isObject
+  let isObject = val => val instanceof Object 
+
+  // isObjectLike
+  let isObjectLike = val => val != null && typeof val == 'object'
+
+  // isPlainObject
+  let isPlainObject = val => Object.prototype.toString.call(val) === "[object Object]"
+
+  // isRegExp
+  let isRegExp = val => Object.prototype.toString.call(val) === "[object RegExp]"
+
+
+
+
+
+
 
 
 /*------------------Math-----------------------------*/
@@ -806,6 +987,43 @@ var ices1 = function() {
 
     // >_<
     uniq: uniq,
+    without: without,
+
+    /* ------------Lang-------- */
+    
+    castArray: castArray,
+    clone: clone,
+    cloneDeep: cloneDeep,
+    conformsTo: conformsTo,
+    eq: eq,
+    gt: gt,
+    gte: gte,
+    isArguments: isArguments,
+    isArray: isArray,
+    isArrayBuffer: isArrayBuffer,
+    isArrayLike: isArrayLike,
+    isArrayLikeObject: isArrayLikeObject,
+    isBoolean: isBoolean,
+    isDate: isDate,
+    isElement: isElement,
+    isError: isError,
+    isFinite: isFinite,
+    isFunction: isFunction,
+    isInteger: isInteger,
+    isLength: isLength,
+    isMap: isMap,
+    isMatch: isMatch,
+    isMatchWith: isMatchWith,
+    isNaN: isNaN,
+    isNative: isNative,
+    isNil: isNil,
+    isNull: isNull,
+    isNumber: isNumber,
+    isObject: isObject,
+    isObjectLike: isObjectLike,
+    isPlainObject: isPlainObject,
+    isRegExp: isRegExp,
+
 
     /* ------------Math-------- */
     
@@ -831,8 +1049,6 @@ var ices1 = function() {
     inRange: inRange,
     random: random,
     
-    without: without,
-
     /* ------------String-------- */
     
     camelCase: camelCase,
@@ -859,6 +1075,14 @@ var ices1 = function() {
     trim: trim,
     trimEnd: trimEnd,
     trimStart: trimStart,
+    truncate: truncate,
+    unescape: unescape,
+    upperCase: upperCase,
+    upperFirst: upperFirst,    
+    words: words,
+
+
+
 
 
     unary: unary,
