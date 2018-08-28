@@ -765,6 +765,68 @@ var ices1 = function() {
   // isRegExp
   let isRegExp = val => Object.prototype.toString.call(val) === "[object RegExp]"
 
+  // isSafeInteger
+  let isSafeInteger = val => Number.isSafeInteger(val)
+
+  // isSet
+  let isSet = val => Object.prototype.toString.call(val) === "[object Set]"
+
+  // isString
+  let isString = val => Object.prototype.toString.call(val) === "[object String]"
+
+  // isSymbol
+  let isSymbol = val => Object.prototype.toString.call(val) === "[object Symbol]"
+
+  // isTypedArray
+  let isTypedArray = val => /Uint(8|16|32).*Array/.test(Object.prototype.toString.call(val))
+
+  // isUndefined
+  let isUndefined = val => Object.prototype.toString.call(val) === "[object Undefined]"
+
+  // isWeakMap
+  let isWeakMap = val => Object.prototype.toString.call(val) === "[object WeakMap]" 
+
+  // isWeakSet
+  let isWeakSet = val => Object.prototype.toString.call(val) === "[object WeakSet]" 
+ 
+  // lt
+  let lt = (val, other) => val < other
+
+  // lte
+  let lte = (val, other) => val <= other
+
+  // toArray
+  let toArray = val => {
+    let res = []
+    for(let i in val) {
+      res.push(val[i])
+    }
+
+    return res
+  }
+
+  // toFinite
+  let toFinite = val => {
+    if (val === Infinity) return Number.MAX_VALUE
+    if (val === -Infinity) return -Number.MAX_VALUE
+
+    return +val || 0
+  }
+
+  // toInteger
+  // let toInteger = val =>
+  // toLength
+
+  // toNumber
+  let toNumber = val => +val
+
+  // toPlainObject
+
+
+
+
+
+
 
 
 
@@ -1024,6 +1086,21 @@ var ices1 = function() {
     isObjectLike: isObjectLike,
     isPlainObject: isPlainObject,
     isRegExp: isRegExp,
+    isSafeInteger: isSafeInteger,
+    isSet: isSet,
+    isString: isString,
+    isSymbol: isSymbol,
+    isTypedArray: isTypedArray,
+    isUndefined: isUndefined,
+    isWeakMap: isWeakMap,
+    isWeakSet: isWeakSet,
+    lt: lt,
+    lte: lte,
+    toArray: toArray,
+    toFinite: toFinite,
+    // toInteger
+    // toLength
+    toNumber: toNumber,
 
 
     /* ------------Math-------- */
