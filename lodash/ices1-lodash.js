@@ -641,7 +641,7 @@ var ices1 = function() {
 
 /*------------------Lang-----------------------------*/
 
-  let castArray = val => Array.isArray(val) ? val : [val]
+  let castArray = (...args) =>  args.length == 0 ? [] : Array.isArray(args[0]) ? args[0] : args
 
   let clone = val => JSON.parse(JSON.stringify(val))
   let cloneDeep= val => JSON.parse(JSON.stringify(val))
@@ -658,7 +658,7 @@ var ices1 = function() {
   }
 
   // eq 
-  let eq = (val, other) => val === other
+  let eq = (val, other) => val === other || (val !== val && other !== other)
 
   // gt
   let gt = (val, other) => val > other
@@ -684,7 +684,8 @@ var ices1 = function() {
   let isArrayLikeObject = val => typeof val == 'object'
 
   // isBoolean
-  let isBoolean = val => typeof val == "boolean"
+  // typeof new Boolean(true) === 'boolean'    // => false 坑
+  let isBoolean = val => Object.prototype.toString.call(val) === "[object Boolean]"
 
   // let isBuffer
 
@@ -759,7 +760,7 @@ var ices1 = function() {
   let isObjectLike = val => val != null && typeof val == 'object'
 
   // isPlainObject
-  let isPlainObject = val => Object.prototype.toString.call(val) === "[object Object]"
+  let isPlainObject = val => Object.prototype.toString.call(val) === "[object Object]" && val.constructor === Object
 
   // isRegExp
   let isRegExp = val => Object.prototype.toString.call(val) === "[object RegExp]"
@@ -990,7 +991,7 @@ var ices1 = function() {
     without: without,
 
     /* ------------Lang-------- */
-    
+
     castArray: castArray,
     clone: clone,
     cloneDeep: cloneDeep,
