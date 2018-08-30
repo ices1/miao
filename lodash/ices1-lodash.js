@@ -696,7 +696,16 @@ var ices1 = function() {
   let isElement = val => Object.prototype.toString.call(val) == "[object HTMLBodyElement]"
 
   // isEmpty
-  // let isEmpty = val => 
+  let isEmpty = val => {
+    if (isMap(val) || isSet(val)) {
+      return val.size == 0
+    }
+    if (isArguments(val) || isArray() || isArrayBuffer(val) || isTypedArray(val) || isString(val)) {
+      return val.length == 0
+    } 
+    return val == null ? true : val.keys.length == 0
+  }
+
 
   // isEqual
   // let isEqual = val => 
@@ -814,14 +823,37 @@ var ices1 = function() {
   }
 
   // toInteger
-  // let toInteger = val =>
+  let toInteger = val => +toFinite(val).toFixed(0)
+
   // toLength
+  let toLength = val => {
+    let res = toInteger(val) < 0 ? 0 : toInteger(val)
+    return res < 4294967295 ? res : 4294967295
+  }
 
   // toNumber
   let toNumber = val => +val
 
   // toPlainObject
+  let toPlainObject = val => {
+    let res = {}
+    for(let prop in val) {
+      res[prop] = val[prop]
+    }
 
+    return res
+  }
+
+  // toSafeInteger
+  let toSafeInteger = val => {
+    let res = toInteger(val)
+    if (res > 9007199254740991) return 9007199254740991
+    if (res < -9007199254740991) return -9007199254740991
+    return res
+  }
+
+  // toString
+  let toString = val => val == null ? '' : val.toString()
 
 
 
@@ -982,7 +1014,7 @@ var ices1 = function() {
   let inRange = (...args) => {
     let a = args.length == 2 ? 0 : args[1]
     let b = args[args.length - 1]
-
+    
     return args[0] > Math.min(a, b) && args[0] < Math.max(a, b)
   }
 
@@ -991,7 +1023,7 @@ var ices1 = function() {
     let calcFloat = (s, e) => Math.random() * (e - s) + s
     let calcInt = (s, e) => +(Math.random() * (e - s) + s).toFixed(0)
     let whichOne = (status, min, max) => status ? calcFloat(min, max) : calcInt(min, max)
-
+    
     if (typeof args[args.length - 1] == 'boolean') {
       max = args[args.length - 2]
       min = args[args.length - 3] || 0 
@@ -1001,31 +1033,40 @@ var ices1 = function() {
       let status = args.some(x => x != (x | 0))
       max = args[args.length - 1]
       min = args[args.length - 2] || 0 
-
+      
       return whichOne(status, min, max)
     }
   }
 
+/* ----------------Object----------------- */
+
+  // assign
+  let assign = (...args) => Object.assign(...args)
+
+  // assignIn
+  let assignIn = (...args) => Object.assign.apply(null,args.map(x => toPlainObject(x)))
+
+
 
   return {
-
-    chunk: chunk,
-    compact: compact,
-    concat: concat,
-    difference: difference,
-    differenceBy: differenceBy,
-// differenceWith: differenceWith,
-    drop: drop,
-    dropRight: dropRight,
-// dropRightWhile: dropRightWhile,
-// dropWhile: dropWhile,
-    fill: fill,
-// findIndex: findIndex,
-// findLastIndex: findLastIndex,
-    flatten: flatten,
-    flattenDeep: flattenDeep,
-    flattenDepth: flattenDepth,
-    fromPairs: fromPairs,
+  
+  chunk: chunk,
+  compact: compact,
+  concat: concat,
+  difference: difference,
+  differenceBy: differenceBy,
+  // differenceWith: differenceWith,
+  drop: drop,
+  dropRight: dropRight,
+  // dropRightWhile: dropRightWhile,
+  // dropWhile: dropWhile,
+  fill: fill,
+  // findIndex: findIndex,
+  // findLastIndex: findLastIndex,
+  flatten: flatten,
+  flattenDeep: flattenDeep,
+  flattenDepth: flattenDepth,
+  fromPairs: fromPairs,
     head: head,
     indexOf: indexOf,
     initial: initial,
@@ -1069,6 +1110,9 @@ var ices1 = function() {
     isBoolean: isBoolean,
     isDate: isDate,
     isElement: isElement,
+    isEmpty: isEmpty,
+    // isEqual
+    // isEqualWith
     isError: isError,
     isFinite: isFinite,
     isFunction: isFunction,
@@ -1098,9 +1142,10 @@ var ices1 = function() {
     lte: lte,
     toArray: toArray,
     toFinite: toFinite,
-    // toInteger
-    // toLength
+    toInteger: toInteger,
+    toLength: toLength,
     toNumber: toNumber,
+    toPlainObject: toPlainObject,
 
 
     /* ------------Math-------- */
@@ -1126,6 +1171,11 @@ var ices1 = function() {
     clamp: clamp,
     inRange: inRange,
     random: random,
+
+
+    /* ----------------Object----------------- */
+    assign: assign,
+    assignIn: assignIn,
     
     /* ------------String-------- */
     
